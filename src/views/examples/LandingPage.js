@@ -36,7 +36,7 @@ function LandingPage() {
         className="main"
         style={{
           backgroundImage:
-            "url(" + require("assets/img/Alinambi/Wallpaper.jpg") + ")",
+            "url(" + require("assets/img/Alinambi/wallpaperTwo.jpeg") + ")",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
@@ -61,14 +61,15 @@ function LandingPage() {
                   style={{
                     fontSize: "33px",
                     fontWeight: "bold",
-                    color: "#2c3e50",
+                    color: "#17174A",
                     letterSpacing: "1.5px",
                     marginBottom: "15px",
                     textTransform: "uppercase",
                     marginTop: "35px",
                   }}
                 >
-                  Bienvenidos a la Unidad Educativa Fiscomisional Aliñambi
+                  Bienvenidos a la Escuela de Educación Básica Fiscomisional
+                  Aliñambi
                 </h1>
                 <p
                   className="Descripcion"
@@ -98,22 +99,28 @@ function LandingPage() {
                   color: "#1E90FF",
                   textTransform: "uppercase",
                   letterSpacing: "1.5px",
-                  marginBottom: "15px",
+                  marginBottom: "25px",
                 }}
               >
-                Nuestros Proyectos y Actividades
+                En Aliñambi
               </h2>
               <h3
-                className="justify-content-center description"
-                style={{ color: "black" }}
+                className="description text-center"
+                style={{
+                  color: "black",
+                  lineHeight: "1.6",
+                  marginBottom: "30px",
+                  fontSize: "24px",
+                  fontWeight: "400",
+                }}
               >
-                La Unidad Educativa Fiscomisional Aliñambi un centro educativo
-                especializado en la educación básica. Contribuimos al desarrollo
-                de la sociedad formando personas de calidad a través de
-                actividades y programas planificados, apoyados por alianzas
-                estratégicas.
+                Somos una Institución Educativa de sostenimiento Fiscomisional
+                comprometida con ofrecer una educación de calidad y calidez,
+                adaptada a las exigencias de la época actual. Nuestro objetivo
+                es fomentar en la Comunidad Educativa el desarrollo integral y
+                el Buen Vivir, preparando a nuestros estudiantes para los
+                desafíos del futuro.
               </h3>
-              <br></br>
               <h2
                 className="text-center"
                 style={{
@@ -122,7 +129,7 @@ function LandingPage() {
                   color: "#1E90FF",
                   textTransform: "uppercase",
                   letterSpacing: "1.5px",
-                  marginBottom: "15px",
+                  marginBottom: "25px",
                 }}
               >
                 ¡Descubre nuestros proyectos y actividades!
@@ -146,7 +153,12 @@ function LandingPage() {
                     Proyecto de Reciclaje
                   </CardTitle>
                   <CardText className="text-white">
-                  Este proyecto busca sensibilizar a estudiantes, docentes y personal administrativo sobre la importancia del reciclaje, incentivando la separación adecuada de desechos y el uso responsable de los recursos, con el propósito de contribuir a la conservación del medio ambiente y generar un impacto positivo en la sociedad.
+                    Este proyecto busca sensibilizar a estudiantes, docentes y
+                    personal administrativo sobre la importancia del reciclaje,
+                    incentivando la separación adecuada de desechos y el uso
+                    responsable de los recursos, con el propósito de contribuir
+                    a la conservación del medio ambiente y generar un impacto
+                    positivo en la sociedad.
                   </CardText>
                 </CardBody>
               </Card>
@@ -154,11 +166,14 @@ function LandingPage() {
             <Col md="4">
               <Card className="d-flex flex-column h-100">
                 <CardImg
-                  alt="Convenios Deportivos"
+                  alt="Segundo Proyecto"
                   src={require("assets/img/Alinambi/fotoAlinambiDos.jpg")}
                   top
                 />
-                <CardBody className="bg-primary flex-grow-1 d-flex flex-column">
+                <CardBody
+                  className="flex-grow-1 d-flex flex-column"
+                  style={{ backgroundColor: "#17174A" }}
+                >
                   <CardTitle
                     tag="h4"
                     className="text-white text-center"
@@ -221,7 +236,7 @@ function LandingPage() {
             <Container>
               <Row>
                 {/* Primera fila */}
-                <Col md="3">
+                <Col md="4">
                   <Link to="/matricula-page" style={{ textDecoration: "none" }}>
                     <Card
                       data-background="image"
@@ -248,7 +263,7 @@ function LandingPage() {
                     </Card>
                   </Link>
                 </Col>
-                <Col md="3">
+                <Col md="4">
                   <Link
                     to="/admisiones-page"
                     style={{ textDecoration: "none" }}
@@ -278,34 +293,7 @@ function LandingPage() {
                     </Card>
                   </Link>
                 </Col>
-                <Col md="3">
-                  <Link to="/historia-page" style={{ textDecoration: "none" }}>
-                    <Card
-                      data-background="image"
-                      style={{
-                        backgroundImage:
-                          "url(" +
-                          require("assets/img/Alinambi/AlinambiInicios.jpg") +
-                          ")",
-                      }}
-                    >
-                      <CardBody>
-                        <h6
-                          className="card-category"
-                          style={{ fontWeight: "bold" }}
-                        >
-                          Historia
-                        </h6>
-                        <br />
-                        <p>
-                          Descubre nuestra trayectoria y compromiso con la
-                          educación de calidad.
-                        </p>
-                      </CardBody>
-                    </Card>
-                  </Link>
-                </Col>
-                <Col md="3">
+                <Col md="4">
                   <Link to="/servicios-page" style={{ textDecoration: "none" }}>
                     <Card
                       data-background="image"
@@ -335,7 +323,7 @@ function LandingPage() {
               </Row>
               <Row>
                 {/* Segunda fila */}
-                <Col md="3">
+                <Col md="4">
                   <Link to="/contactos-page" style={{ textDecoration: "none" }}>
                     <Card
                       data-background="image"
@@ -362,38 +350,7 @@ function LandingPage() {
                     </Card>
                   </Link>
                 </Col>
-                <Col md="3">
-                  <Link
-                    to="/actividades-page"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <Card
-                      data-background="image"
-                      style={{
-                        backgroundImage:
-                          "url(" +
-                          require("assets/img/Alinambi/fotoAlinambiCatorce.jpg") +
-                          ")",
-                      }}
-                    >
-                      <CardBody>
-                        <h6
-                          className="card-category"
-                          style={{ fontWeight: "bold" }}
-                        >
-                          Actividades
-                        </h6>
-                        <br />
-                        <p>
-                          {" "}
-                          Conoce nuestras actividades extracurriculares y
-                          eventos especiales.
-                        </p>
-                      </CardBody>
-                    </Card>
-                  </Link>
-                </Col>
-                <Col md="3">
+                <Col md="4">
                   <Link to="/boletines-page" style={{ textDecoration: "none" }}>
                     <Card
                       data-background="image"
@@ -413,20 +370,24 @@ function LandingPage() {
                         </h6>
                         <br />
                         <p>
-                          Encuentra documentos y archivos de nuestra entidad para cualquier información.
+                          Encuentra documentos y archivos de nuestra entidad
+                          para cualquier información.
                         </p>
                       </CardBody>
                     </Card>
                   </Link>
                 </Col>
-                <Col md="3">
-                  <Link to="/fundacion-page" style={{ textDecoration: "none" }}>
+                <Col md="4">
+                  <Link
+                    to="/planCurricular-page"
+                    style={{ textDecoration: "none" }}
+                  >
                     <Card
                       data-background="image"
                       style={{
                         backgroundImage:
                           "url(" +
-                          require("assets/img/Alinambi/fotoAlinambiVeintiCuatro.jpg") +
+                          require("assets/img/Alinambi/fotoAlinambiCinco.jpg") +
                           ")",
                       }}
                     >
@@ -435,12 +396,12 @@ function LandingPage() {
                           className="card-category"
                           style={{ fontWeight: "bold" }}
                         >
-                          Nuestra Fundación
+                          Plan Curricular
                         </h6>
                         <br />
                         <p>
-                          Aprende más sobre los valores y objetivos que guían
-                          nuestra fundación.
+                          Explora nuestro plan curricular diseñado para ofrecer
+                          una educación integral y de calidad.
                         </p>
                       </CardBody>
                     </Card>

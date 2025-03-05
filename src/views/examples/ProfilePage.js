@@ -1,6 +1,5 @@
 import React from "react";
 
-// reactstrap components
 import {
   Button,
   Label,
@@ -16,7 +15,6 @@ import {
   Col,
 } from "reactstrap";
 
-// core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";

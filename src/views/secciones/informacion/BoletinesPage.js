@@ -1,36 +1,14 @@
 import React from "react";
 
-// reactstrap components
-import {
-  Button,
-  Label,
-  FormGroup,
-  Input,
-  NavItem,
-  NavLink,
-  Nav,
-  TabContent,
-  TabPane,
-  Container,
-  Row,
-  Col,
-} from "reactstrap";
+import { Container, Row } from "reactstrap";
 
-// core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import BoletinesHeader from "components/Headers/BoletinesHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 import BoletinesBody from "views/secciones/informacion/Boletines.js";
+import InspeccionGeneral from "views/secciones/informacion/InspeccionGeneral.js";
 
 function BoletinesPage() {
-  const [activeTab, setActiveTab] = React.useState("1");
-
-  const toggle = (tab) => {
-    if (activeTab !== tab) {
-      setActiveTab(tab);
-    }
-  };
-
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
     document.body.classList.add("landing-page");
@@ -46,7 +24,7 @@ function BoletinesPage() {
         className="section profile-content"
         style={{
           backgroundImage:
-            "url(" + require("assets/img/Alinambi/Wallpaper.jpg") + ")",
+            "url(" + require("assets/img/Alinambi/wallpaperTwo.jpeg") + ")",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
@@ -57,6 +35,9 @@ function BoletinesPage() {
         <Container>
           <Row>
             <BoletinesBody />
+          </Row>
+          <Row>
+            <InspeccionGeneral />
           </Row>
         </Container>
       </div>

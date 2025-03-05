@@ -43,7 +43,7 @@ const ActivitiesContent = () => {
     {
       title: "Ceremonia de Graduacion",
       description:
-      "Celebramos el esfuerzo, la dedicación y los logros académicos de nuestros estudiantes al culminar una etapa fundamental de su formación.",
+        "Celebramos el esfuerzo, la dedicación y los logros académicos de nuestros estudiantes al culminar una etapa fundamental de su formación.",
       image: require("assets/img/Alinambi/grado-AlinambiOne.jpg"),
       color: "light",
     },
@@ -78,10 +78,10 @@ const ActivitiesContent = () => {
             <h5
               className="text-center justify-content-center description"
               style={{
-                fontSize: "22px",
+                fontSize: "24px",
                 color: "black",
                 marginTop: "30px",
-                fontWeight: "500",
+                fontWeight: "400",
               }}
             >
               Descubre las experiencias que hacen única a nuestra comunidad
@@ -113,7 +113,7 @@ const ActivitiesContent = () => {
                     {activity.title}
                   </CardTitle>
                   <CardText
-                    className="text-muted"
+                    className=""
                     style={{ fontWeight: "normal", color: "black" }}
                   >
                     {activity.description}

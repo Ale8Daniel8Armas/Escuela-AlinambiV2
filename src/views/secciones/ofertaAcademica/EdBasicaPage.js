@@ -13,9 +13,7 @@ import {
   TabContent,
   TabPane,
 } from "reactstrap";
-import classnames from "classnames";
 
-// components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import EdBasicaHeader from "components/Headers/EdBasicaHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
@@ -42,7 +40,7 @@ function EdBasicaPage() {
         className="section"
         style={{
           backgroundImage:
-            "url(" + require("assets/img/Alinambi/Wallpaper.jpg") + ")",
+            "url(" + require("assets/img/Alinambi/wallpaperTwo.jpeg") + ")",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
@@ -70,10 +68,10 @@ function EdBasicaPage() {
               <h5
                 className="text-center justify-content-center description"
                 style={{
-                  fontSize: "22px",
+                  fontSize: "24px",
                   color: "black",
                   marginTop: "30px",
-                  fontWeight: "500",
+                  fontWeight: "400",
                 }}
               >
                 Formación integral basada en valores, excelencia académica y
@@ -158,7 +156,7 @@ function EdBasicaPage() {
                         <CardBody
                           className="flex-grow-1 d-flex flex-column"
                           style={{
-                            backgroundColor: "rgba(255, 187, 89, 0.9)",
+                            backgroundColor: "rgb(23,23,74)",
                           }}
                         >
                           <CardTitle
@@ -166,7 +164,7 @@ function EdBasicaPage() {
                             className="text-white text-center"
                             style={{ fontWeight: "bold" }}
                           >
-                            <b style={{ color: "#343a40" }}>Áreas Académicas</b>
+                            <b style={{ color: "#ffffff" }}>Áreas Académicas</b>
                           </CardTitle>
                           <br />
                           <ul
@@ -196,7 +194,7 @@ function EdBasicaPage() {
                         <CardBody
                           className="flex-grow-1 d-flex flex-column"
                           style={{
-                            backgroundColor: "rgba(255, 160, 122, 0.9)",
+                            backgroundColor: "rgb(129,174,58)",
                           }}
                         >
                           <CardTitle
@@ -204,7 +202,7 @@ function EdBasicaPage() {
                             className="text-white text-center"
                             style={{ fontWeight: "bold" }}
                           >
-                            <b style={{ color: "#343a40" }}>Metodología</b>
+                            <b style={{ color: "#ffffff" }}>Metodología</b>
                           </CardTitle>
                           <br />
                           <ul
@@ -234,7 +232,7 @@ function EdBasicaPage() {
                         <CardBody
                           className="flex-grow-1 d-flex flex-column"
                           style={{
-                            backgroundColor: "rgba(180, 155, 200, 0.9)",
+                            backgroundColor: "rgb(23,23,74)",
                           }}
                         >
                           <CardTitle
@@ -242,7 +240,7 @@ function EdBasicaPage() {
                             className="text-white text-center"
                             style={{ fontWeight: "bold" }}
                           >
-                            <b style={{ color: "#343a40" }}>Áreas Académicas</b>
+                            <b style={{ color: "#ffffff" }}>Áreas Académicas</b>
                           </CardTitle>
                           <br />
                           <ul
@@ -274,7 +272,7 @@ function EdBasicaPage() {
                         <CardBody
                           className="flex-grow-1 d-flex flex-column"
                           style={{
-                            backgroundColor: "rgba(255, 183, 128, 0.9)",
+                            backgroundColor: "rgb(129,174,58)",
                           }}
                         >
                           <CardTitle
@@ -282,7 +280,7 @@ function EdBasicaPage() {
                             className="text-white text-center"
                             style={{ fontWeight: "bold" }}
                           >
-                            <b style={{ color: "#343a40" }}>
+                            <b style={{ color: "#ffffff" }}>
                               Actividades Complementarias{" "}
                             </b>
                           </CardTitle>
@@ -308,39 +306,85 @@ function EdBasicaPage() {
           <br />
           <Row>
             <Col md="6">
-              <Card className="card-plain">
+              <Card
+                style={{
+                  backgroundColor: "#ffffff",
+                  borderRadius: "10px",
+                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                  marginBottom: "20px",
+                }}
+              >
                 <CardBody>
-                  <CardTitle tag="h4">Perfil de Salida</CardTitle>
-                  <br />
-                  <ul>
-                  <li>Pensamiento crítico y analítico</li>
-                            <li>Actitudes competitivas</li>
-                            <li>Habilidades de comunicación</li>
-                            <li>Valores y ética</li>
-                            <li>Preparación para bachillerato</li>
+                  <CardTitle
+                    tag="h4"
+                    style={{ color: "#333", marginBottom: "20px" }}
+                  >
+                    Perfil de Salida
+                  </CardTitle>
+                  <ul style={{ listStyleType: "disc", paddingLeft: "20px" }}>
+                    <li style={{ marginBottom: "10px", color: "#555" }}>
+                      Pensamiento crítico y analítico
+                    </li>
+                    <li style={{ marginBottom: "10px", color: "#555" }}>
+                      Actitudes competitivas
+                    </li>
+                    <li style={{ marginBottom: "10px", color: "#555" }}>
+                      Habilidades de comunicación
+                    </li>
+                    <li style={{ marginBottom: "10px", color: "#555" }}>
+                      Valores y ética
+                    </li>
+                    <li style={{ marginBottom: "10px", color: "#555" }}>
+                      Preparación para bachillerato
+                    </li>
                   </ul>
                 </CardBody>
               </Card>
             </Col>
             <Col md="6">
-              <Card className="card-plain">
+              <Card
+                style={{
+                  backgroundColor: "#ffffff",
+                  borderRadius: "10px",
+                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                  marginBottom: "20px",
+                }}
+              >
                 <CardBody>
-                  <CardTitle tag="h4">Proyectos Especiales</CardTitle>
-                  <br />
-                  <ul>
-                  <li>Ferias y ceremonias de integración</li>
-                            <li>Modelo gubernamental</li>
-                            <li>Proyectos comunitarios</li>
-                            <li>Intercambios culturales</li>
-                            <li>Elecciones y consejo estudiantil</li>
+                  <CardTitle
+                    tag="h4"
+                    style={{ color: "#333", marginBottom: "20px" }}
+                  >
+                    Proyectos Especiales
+                  </CardTitle>
+                  <ul style={{ listStyleType: "disc", paddingLeft: "20px" }}>
+                    <li style={{ marginBottom: "10px", color: "#555" }}>
+                      Ferias y ceremonias de integración
+                    </li>
+                    <li style={{ marginBottom: "10px", color: "#555" }}>
+                      Modelo gubernamental
+                    </li>
+                    <li style={{ marginBottom: "10px", color: "#555" }}>
+                      Proyectos comunitarios
+                    </li>
+                    <li style={{ marginBottom: "10px", color: "#555" }}>
+                      Intercambios culturales
+                    </li>
+                    <li style={{ marginBottom: "10px", color: "#555" }}>
+                      Elecciones y consejo estudiantil
+                    </li>
                   </ul>
                 </CardBody>
               </Card>
             </Col>
           </Row>
+
           <Row className="mt-5">
             <Col md="12">
-              <Card className="card-plain bg-primary">
+              <Card
+                className="card-plain"
+                style={{ backgroundColor: "#1E9FDB" }}
+              >
                 <CardBody>
                   <h3
                     className="text-white text-center"
@@ -373,7 +417,7 @@ function EdBasicaPage() {
                       >
                         Lunes a Viernes
                         <br />
-                        7:15 AM - 13:45 PM
+                        7:00 AM - 13:00 PM
                       </p>
                     </Col>
                     <Col md="6" className="text-center">

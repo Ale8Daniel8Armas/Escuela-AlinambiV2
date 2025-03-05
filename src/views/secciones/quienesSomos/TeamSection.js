@@ -1,97 +1,163 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Row,
   Col,
   Card,
-  CardImg,
   CardBody,
   CardTitle,
   CardText,
 } from "reactstrap";
+import axios from "axios";
 
 const TeamSection = () => {
-  const teamMembers = [
+  const [teamMembers, setTeamMembers] = useState([]);
+
+  // Obtener los miembros desde la API
+  useEffect(() => {
+    const fetchTeamMembers = async () => {
+      try {
+        const response = await axios.get(
+          "https://alinambiback.onrender.com/api/members"
+        );
+        setTeamMembers(response.data);
+      } catch (error) {
+        console.error("Error al obtener los miembros:", error);
+      }
+    };
+
+    fetchTeamMembers();
+  }, []);
+
+  // Datos predeterminados para los miembros
+  const defaultMembers = [
     {
-      title: "Dirección",
-      name: "Título/Grado + Nombre Directora",
-      description: "Rectora de la institución",
+      role: "Aún no definido",
+      name: "",
+      description: "",
       image: require("assets/img/default-avatar.png"),
-      color: "primary",
     },
     {
-      title: "Dirección",
-      name: "Título/Grado + Nombre Director/a",
-      description: "Vicerrector/a de la institución",
+      role: "Aún no definido",
+      name: "",
+      description: "",
       image: require("assets/img/default-avatar.png"),
-      color: "info",
     },
     {
-      title: "DECE",
-      name: "Título/Grado + Nombre Director/a",
-      description: "Supervisor/a de la institución",
+      role: "Aún no definido",
+      name: "",
+      description: "",
       image: require("assets/img/default-avatar.png"),
-      color: "primary",
     },
     {
-      title: "DECE",
-      name: "Título/Grado + Nombre Director/a",
-      description: "Psicología y atención",
+      role: "Aún no definido",
+      name: "",
+      description: "",
       image: require("assets/img/default-avatar.png"),
-      color: "info",
     },
   ];
+
+  // Combinar miembros de la base de datos con los predeterminados
+  const combinedMembers = [...teamMembers];
+  for (let i = teamMembers.length; i < 4; i++) {
+    combinedMembers.push(defaultMembers[i]);
+  }
 
   return (
     <div className="section section-team">
       <Container>
         <Row>
-          <Col className="text-center mb-6">
+          <Col className="text-center mb-5">
             <h2
               className="text-center"
-              style={{ fontWeight: "bold", color: "#1E90FF" }}
+              style={{
+                fontWeight: "bold",
+                color: "#1E90FF",
+                marginBottom: "-120px",
+              }}
             >
-              Conozca nuestro consejo estudiantil
+              ¡Conoce nuestro consejo estudiantil!
             </h2>
           </Col>
         </Row>
-        <Row>
-          {teamMembers.map((member, index) => (
+        <Row style={{ marginTop: "-70px" }}>
+          {combinedMembers.map((member, index) => (
             <Col key={index} xs={12} sm={6} md={3} className="mb-4">
               <Card
-                className={`shadow-lg bg-${member.color} card-profile text-center`}
+                className={`shadow-lg ${
+                  index % 2 === 0 ? "bg-primary" : ""
+                } card-profile text-center`}
                 style={{
-                  height: "100%",
-                  minHeight: "100px",
+                  backgroundColor: index % 2 !== 0 ? "#17174A" : undefined,
+                  height: "90%",
+                  minHeight: "50px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  marginBottom: "10px",
+                  borderRadius: "15px",
                 }}
               >
-                <div className="img-circle-wrapper text-center mt-3">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="img-circle img-no-padding img-responsive"
+                <div style={{ marginTop: "25px", marginBottom: "10px" }}>
+                  <h5
+                    className="text-light mt-3"
                     style={{
-                      marginTop: "50px",
-                      width: "150px",
-                      height: "150px",
+                      fontSize: "18px",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Integrante {index + 1}
+                  </h5>
+                </div>
+                <div className="img-wrapper text-center mt-3">
+                  <img
+                    src={
+                      member.filename
+                        ? `https://alinambiback.onrender.com/api/member-images/${member.filename}`
+                        : member.image
+                    }
+                    alt={member.name}
+                    style={{
+                      width: "200px",
+                      height: "200px",
                       objectFit: "cover",
-                      borderRadius: "50%",
-                      border: `2px solid ${member.color}`,
+                      borderRadius: "10px",
+                      border: `3px solid ${
+                        index % 2 === 0 ? "#1E90FF" : "#87CEEB"
+                      }`,
                     }}
                   />
                 </div>
                 <CardBody>
-                  <h6 className="text-light">{member.title}</h6>
-                  <CardTitle tag="h4" className="mb-2 text-white">
+                  <h6
+                    className="text-light mb-3"
+                    style={{
+                      fontSize: "20px",
+                      fontWeight: "600",
+                      marginTop: "10px",
+                    }}
+                  >
+                    {member.role}
+                  </h6>
+                  <CardTitle
+                    tag="h4"
+                    className="mb-2 text-white"
+                    style={{
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                      marginTop: "10px",
+                    }}
+                  >
                     {member.name}
                   </CardTitle>
                   <CardText
                     className="description text-white"
-                    style={{ fontSize: "16px", fontWeight: "bold" }}
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: "normal",
+                      marginTop: "20px",
+                    }}
                   >
                     {member.description}
                   </CardText>

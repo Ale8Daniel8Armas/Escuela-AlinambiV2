@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Row,
@@ -8,44 +8,104 @@ import {
   CardTitle,
   Button,
 } from "reactstrap";
+import axios from "axios";
 
 const BoletinesContenido = () => {
+  const [files, setFiles] = useState([]);
+
+  // Obtener los archivos al cargar el componente
+  useEffect(() => {
+    fetchFiles();
+  }, []);
+
+  // Función para obtener los archivos desde la API
+  const fetchFiles = async () => {
+    try {
+      const response = await axios.get(
+        "https://alinambiback.onrender.com/api/files"
+      );
+      setFiles(response.data);
+    } catch (error) {
+      console.error("Error al obtener archivos:", error);
+      alert("Error al obtener archivos.");
+    }
+  };
+
+  // Función genérica para descargar archivos por etiqueta
+  const downloadFileByTag = async (etiqueta) => {
+    try {
+      // Verificar si hay un archivo con la etiqueta correspondiente
+      const file = files.find((f) => f.etiqueta === etiqueta);
+
+      if (!file) {
+        alert(
+          `Aún no hay archivos subidos para esta sección o no está disponible.`
+        );
+        return;
+      }
+
+      // Hacer una solicitud al backend para descargar el archivo
+      const response = await axios.get(
+        `https://alinambiback.onrender.com/api/download/${file._id}`,
+        {
+          responseType: "blob",
+        }
+      );
+
+      // Crear un enlace temporal para la descarga
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", file.filename);
+      document.body.appendChild(link);
+      link.click();
+
+      // Limpiar el enlace temporal
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      alert(
+        `Aún no hay archivos subidos para esta sección o no está disponible".`
+      );
+    }
+  };
+
   const bulletins = [
     {
       title: "Condición Médica",
       icon: "fa fa-medkit",
-      color: "#ffd700",
-      link: "#",
+      color: "#2e8b57",
+      etiqueta: "Boletín - Condición Médica",
     },
     {
       title: "Manual de Compromisos y Obligaciones",
       icon: "fa fa-book",
-      color: "#ff1493",
-      link: "#",
+      color: "#2e8b57",
+      etiqueta: "Boletín - Manual de Compromisos y Obligaciones",
     },
     {
-      title: "Lineamientos de Becas",
+      title: "Instructivo para Matrículas",
       icon: "fa fa-graduation-cap",
-      color: "#000080",
-      link: "#",
+      color: "#2e8b57",
+      etiqueta: "Boletín - Instructivo para Matrículas",
     },
     {
-      title: "Seguro Médico Estudiantil",
+      title: "Resolución Ministerial de Costos",
       icon: "fa fa-heartbeat",
-      color: "#4169e1",
-      link: "#",
+      color: "#2e8b57",
+      etiqueta: "Boletín - Resolución Ministerial de Costos",
     },
     {
       title: "Reglamento Institucional",
       icon: "fa fa-users",
       color: "#2e8b57",
-      link: "#",
+      etiqueta: "Boletín - Reglamento Institucional",
     },
     {
       title: "Carta de Solicitud",
       icon: "fa fa-file-signature",
-      color: "#8B0000",
-      link: "#",
+      color: "#2e8b57",
+      etiqueta: "Boletín - Carta de Solicitud",
     },
   ];
 
@@ -73,10 +133,10 @@ const BoletinesContenido = () => {
             <h5
               className="text-center description justify-content-center description"
               style={{
-                fontSize: "22px",
+                fontSize: "24px",
                 color: "black",
                 marginTop: "30px",
-                fontWeight: "500",
+                fontWeight: "400",
               }}
             >
               Accede a toda la información importante de nuestra institución
@@ -98,8 +158,7 @@ const BoletinesContenido = () => {
                     color="primary"
                     className="btn-round"
                     outline
-                    href={bulletin.link}
-                    target="_blank"
+                    onClick={() => downloadFileByTag(bulletin.etiqueta)}
                     style={{
                       borderColor: bulletin.color,
                       color: bulletin.color,

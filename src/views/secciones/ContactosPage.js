@@ -1,39 +1,13 @@
 import React from "react";
 
-// reactstrap components
-import {
-  Button,
-  Label,
-  FormGroup,
-  Input,
-  NavItem,
-  NavLink,
-  Nav,
-  TabContent,
-  TabPane,
-  Container,
-  Row,
-  Col,
-  Form,
-  InputGroup,
-  InputGroupText,
-} from "reactstrap";
+import { Container, Row } from "reactstrap";
 
-// core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import ContactosPageHeader from "components/Headers/ContactosHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 import ContactosContent from "views/secciones/ContactosContenido.js";
 
 function ContactosPage() {
-  const [activeTab, setActiveTab] = React.useState("1");
-
-  const toggle = (tab) => {
-    if (activeTab !== tab) {
-      setActiveTab(tab);
-    }
-  };
-
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
     document.body.classList.add("landing-page");
@@ -49,7 +23,7 @@ function ContactosPage() {
         className="section profile-content"
         style={{
           backgroundImage:
-            "url(" + require("assets/img/Alinambi/Wallpaper.jpg") + ")",
+            "url(" + require("assets/img/Alinambi/wallpaperTwo.jpeg") + ")",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
@@ -62,7 +36,7 @@ function ContactosPage() {
             <ContactosContent />
           </Row>
         </Container>
-        <Container>
+        {/*<Container>
           <Row>
             <Col className="ml-auto mr-auto" md="8">
               <h2 className="mt-4 text-center" style={{ color: "#1E90FF" }}>
@@ -106,7 +80,7 @@ function ContactosPage() {
               </Form>
             </Col>
           </Row>
-        </Container>
+        </Container> */}
       </div>
       <DemoFooter />
     </>

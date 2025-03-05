@@ -1,35 +1,11 @@
 import React from "react";
-import {
-  Button,
-  Label,
-  FormGroup,
-  Input,
-  NavItem,
-  NavLink,
-  Nav,
-  TabContent,
-  TabPane,
-  Container,
-  Row,
-  Col,
-  Card,
-  CardBody,
-} from "reactstrap";
+import { Container, Row, Col, Card, CardBody } from "reactstrap";
 
-// core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import HistoriaHeader from "components/Headers/HistoriaHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 
 function HistoriaPage() {
-  const [activeTab, setActiveTab] = React.useState("1");
-
-  const toggle = (tab) => {
-    if (activeTab !== tab) {
-      setActiveTab(tab);
-    }
-  };
-
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
     document.body.classList.add("landing-page");
@@ -45,7 +21,7 @@ function HistoriaPage() {
         className="section profile-content"
         style={{
           backgroundImage:
-            "url(" + require("assets/img/Alinambi/Wallpaper.jpg") + ")",
+            "url(" + require("assets/img/Alinambi/wallpaperTwo.jpeg") + ")",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
@@ -76,7 +52,7 @@ function HistoriaPage() {
                   fontSize: "22px",
                   color: "black",
                   marginTop: "30px",
-                  fontWeight: "500",
+                  fontWeight: "400",
                 }}
               >
                 Somos una institución educativa fiscomisional comprometida con
@@ -97,7 +73,7 @@ function HistoriaPage() {
                   <CardBody>
                     <h3
                       className="title text-center mb-3"
-                      style={{ color: "#4CAF50" }}
+                      style={{ color: "#81AE3A" }}
                     >
                       Nuestros Orígenes
                     </h3>
@@ -130,7 +106,7 @@ function HistoriaPage() {
                     </Row>
                     <h3
                       className="title text-center mb-3"
-                      style={{ color: "#4CAF50" }}
+                      style={{ color: "#81AE3A" }}
                     >
                       Crecimiento y Logros
                     </h3>
@@ -163,7 +139,7 @@ function HistoriaPage() {
                     </Row>
                     <h3
                       className="title text-center mb-3"
-                      style={{ color: "#4CAF50" }}
+                      style={{ color: "#81AE3A" }}
                     >
                       Nuevo Milenio y Proyección Futura
                     </h3>
@@ -201,12 +177,13 @@ function HistoriaPage() {
                           fontWeight: "400",
                         }}
                       >
-                        Hoy, la U.E. Aliñambi es referente en innovación
-                        educativa, con más de 500 estudiantes y un equipo
-                        docente altamente preparado y profesional. Nuestros
-                        logros incluyen el apoyo de diversas instituciones
-                        reconocidas más el aval de calidad primaria dentro de
-                        las mejores escuelas de enseñanza a nivel local.
+                        Hoy en día, la Escuela de Educación Básica Fiscomisional
+                        Aliñambi se dedica a la innovación educativa, con más de
+                        200 estudiantes y un equipo docente altamente preparado
+                        y profesional. Nuestros logros incluyen el apoyo de
+                        diversas instituciones reconocidas más el aval de
+                        calidad primaria dentro de las mejores escuelas de
+                        enseñanza a nivel local.
                       </p>
                     </Row>
                     <div className="text-center mt-4">

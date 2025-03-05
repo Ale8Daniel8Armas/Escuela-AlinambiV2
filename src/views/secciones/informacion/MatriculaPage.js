@@ -1,16 +1,6 @@
 import React from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardBody,
-  CardTitle,
-  Button,
-  Progress,
-} from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 
-// components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import MatriculaHeader from "components/Headers/MatriculaHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
@@ -30,7 +20,7 @@ function MatriculaPage() {
         className="section"
         style={{
           backgroundImage:
-            "url(" + require("assets/img/Alinambi/Wallpaper.jpg") + ")",
+            "url(" + require("assets/img/Alinambi/wallpaperTwo.jpeg") + ")",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
@@ -58,10 +48,10 @@ function MatriculaPage() {
               <h5
                 className="text-center description justify-content-center description"
                 style={{
-                  fontSize: "22px",
+                  fontSize: "24px",
                   color: "black",
                   marginTop: "30px",
-                  fontWeight: "500",
+                  fontWeight: "400",
                 }}
               >
                 Conoce los pasos y requisitos necesarios para matricular a tu

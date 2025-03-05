@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Row,
@@ -13,27 +13,68 @@ import {
   TabPane,
   Button,
 } from "reactstrap";
-import classnames from "classnames";
+import axios from "axios";
 
-// components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import PlanCurricularHeader from "components/Headers/PlanCurricularHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 
-//Archivo importado
-import pdfPrueba from "assets/docs/PdfPrueba.pdf";
-
 function PlanCurricularPage() {
   const [activeTab, setActiveTab] = React.useState("1");
+  const [files, setFiles] = useState([]);
 
-  const bulletins = [
-    {
-      title: "Plan Curricular Aliñambi",
-      icon: "fa fa-book",
-      color: "#2e8b57",
-      link: "#",
-    },
-  ];
+  React.useEffect(() => {
+    document.documentElement.classList.remove("nav-open");
+    window.scrollTo(0, 0);
+    fetchFiles();
+  }, []);
+
+  // Función para obtener los archivos desde la API
+  const fetchFiles = async () => {
+    try {
+      const response = await axios.get(
+        "https://alinambiback.onrender.com/api/files"
+      );
+      setFiles(response.data);
+    } catch (error) {
+      alert("Error al obtener archivos.");
+    }
+  };
+
+  // Función genérica para descargar archivos por etiqueta
+  const downloadFileByTag = async (etiqueta) => {
+    try {
+      const file = files.find((f) => f.etiqueta === etiqueta);
+
+      if (!file) {
+        alert(
+          `Aún no hay archivos subidos para esta sección o no está disponible.`
+        );
+        return;
+      }
+
+      const response = await axios.get(
+        `https://alinambiback.onrender.com/api/download/${file._id}`,
+        {
+          responseType: "blob",
+        }
+      );
+
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", file.filename);
+      document.body.appendChild(link);
+      link.click();
+
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      alert(
+        `Aún no hay archivos subidos para esta sección o no está disponible".`
+      );
+    }
+  };
 
   const toggle = (tab) => {
     if (activeTab !== tab) {
@@ -41,20 +82,14 @@ function PlanCurricularPage() {
     }
   };
 
-  React.useEffect(() => {
-    document.documentElement.classList.remove("nav-open");
-    window.scrollTo(0, 0);
-  }, []);
-
-  //Gestion de pdfs
-  const handleDownload = (pdfFile) => {
-    const link = document.createElement("a");
-    link.href = pdfFile;
-    link.download = pdfFile.split("/").pop();
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  const bulletins = [
+    {
+      title: "Plan Curricular Aliñambi",
+      icon: "fa fa-book",
+      color: "#2e8b57",
+      etiqueta: "Plan Curricular - Plan Curricular Actual",
+    },
+  ];
 
   return (
     <>
@@ -64,7 +99,7 @@ function PlanCurricularPage() {
         className="section"
         style={{
           backgroundImage:
-            "url(" + require("assets/img/Alinambi/Wallpaper.jpg") + ")",
+            "url(" + require("assets/img/Alinambi/wallpaperTwo.jpeg") + ")",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
@@ -92,10 +127,10 @@ function PlanCurricularPage() {
               <h5
                 className="text-center justify-content-center description"
                 style={{
-                  fontSize: "22px",
+                  fontSize: "24px",
                   color: "black",
                   marginTop: "30px",
-                  fontWeight: "500",
+                  fontWeight: "400",
                 }}
               >
                 Nuestro plan curricular está diseñado para formar estudiantes
@@ -321,7 +356,6 @@ function PlanCurricularPage() {
                             {[
                               "Aprendizaje basado en proyectos",
                               "Trabajo colaborativo",
-                              "Uso de tecnología educativa",
                               "Investigación y experimentación",
                               "Desarrollo del pensamiento",
                             ].map((item, index) => (
@@ -367,7 +401,7 @@ function PlanCurricularPage() {
                           >
                             {[
                               "Plataformas digitales",
-                              "Laboratorios especializados",
+                              "Centros especializados",
                               "Material didáctico innovador",
                               "Espacios de aprendizaje flexibles",
                             ].map((item, index) => (
@@ -417,8 +451,7 @@ function PlanCurricularPage() {
                           >
                             {[
                               "Evaluación diagnóstica",
-                              "Evaluación formativa",
-                              "Evaluación sumativa",
+                              "Evaluación formativa y sumativa",
                               "Autoevaluación y coevaluación",
                               "Rúbricas de desempeño",
                             ].map((item, index) => (
@@ -504,8 +537,6 @@ function PlanCurricularPage() {
                       color="primary"
                       className="btn-round"
                       outline
-                      href={bulletin.link}
-                      target="_blank"
                       style={{
                         borderColor: bulletin.color,
                         color: bulletin.color,
@@ -519,7 +550,7 @@ function PlanCurricularPage() {
                         e.target.style.backgroundColor = "transparent";
                         e.target.style.color = bulletin.color;
                       }}
-                      onClick={() => handleDownload(pdfPrueba)}
+                      onClick={() => downloadFileByTag(bulletin.etiqueta)}
                     >
                       <i className="fa fa-download mr-1"></i>
                       Descargar

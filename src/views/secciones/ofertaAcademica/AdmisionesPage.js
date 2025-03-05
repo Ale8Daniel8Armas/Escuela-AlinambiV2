@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-// reactstrap components
 import {
   Container,
   Row,
@@ -13,16 +13,73 @@ import {
   CardImg,
 } from "reactstrap";
 
-// components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import AdmisionesHeader from "components/Headers/AdmisionesHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 
 function AdmisionesPage() {
+  const [files, setFiles] = React.useState([]);
+
   React.useEffect(() => {
     document.documentElement.classList.remove("nav-open");
     window.scrollTo(0, 0);
+    fetchFiles();
   }, []);
+
+  // Función para obtener los archivos desde la API
+  const fetchFiles = async () => {
+    try {
+      const response = await axios.get(
+        "https://alinambiback.onrender.com/api/files"
+      );
+      setFiles(response.data);
+    } catch (error) {
+      alert("Error al obtener archivos.");
+    }
+  };
+
+  // Función genérica para descargar archivos por etiqueta
+  const downloadFileByTag = async (etiqueta) => {
+    try {
+      const file = files.find((f) => f.etiqueta === etiqueta);
+
+      if (!file) {
+        alert(
+          `Aún no hay archivos subidos para esta sección o no está disponible.`
+        );
+        return;
+      }
+
+      const response = await axios.get(
+        `https://alinambiback.onrender.com/api/download/${file._id}`,
+        {
+          responseType: "blob",
+        }
+      );
+
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", file.filename);
+      document.body.appendChild(link);
+      link.click();
+
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      alert(
+        `Aún no hay archivos subidos para esta sección o no está disponible".`
+      );
+    }
+  };
+
+  const handleDownload = () => {
+    downloadFileByTag("Admisiones - Documentación para Admisión");
+  };
+
+  const DownloadFormularioIns = () => {
+    downloadFileByTag("Admisiones - Formulario para inscripción");
+  };
 
   return (
     <>
@@ -32,7 +89,7 @@ function AdmisionesPage() {
         className="section section-dark"
         style={{
           backgroundImage:
-            "url(" + require("assets/img/Alinambi/Wallpaper.jpg") + ")",
+            "url(" + require("assets/img/Alinambi/wallpaperTwo.jpeg") + ")",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
@@ -55,20 +112,21 @@ function AdmisionesPage() {
                   marginTop: "35px",
                 }}
               >
-                Admisiones Alinambi - Proceso e Información
+                Proceso de Admisión
               </h2>
               <h5
                 className="text-center description justify-content-center description"
                 style={{
-                  fontSize: "22px",
+                  fontSize: "24px",
                   color: "black",
                   marginTop: "30px",
-                  fontWeight: "500",
+                  fontWeight: "400",
                 }}
               >
-                Bienvenidos al proceso de admisión de la Unidad Educativa
-                Alinambi. Aquí encontrarás toda la información necesaria para
-                formar parte de nuestra comunidad educativa.
+                Bienvenidos al proceso de admisión de la Escuela de Educación
+                Básica Fiscomisional Aliñambi. Aquí encontrarás toda la
+                información necesaria para formar parte de nuestra comunidad
+                educativa.
               </h5>
             </Col>
           </Row>
@@ -81,7 +139,7 @@ function AdmisionesPage() {
               >
                 <CardImg
                   alt="Inicial 2"
-                  src={require("assets/img/Alinambi/fotoAlinambiTres.jpg")}
+                  src={require("assets/img/Alinambi/GRADO.jpg")}
                   top
                   style={{
                     objectFit: "cover",
@@ -105,16 +163,17 @@ function AdmisionesPage() {
                   >
                     Inicial 2
                   </CardTitle>
-                  <p className="text-white mb-4" style={{ fontSize: "1rem" }}>
+                  <br />
+                  <p className="text-white mb-4" style={{ fontSize: "1.2rem" }}>
                     Ofrecemos educación para niños de 4 años con un programa
                     integral que incluye:
                   </p>
                   <ul
                     className="text-white pl-3"
-                    style={{ fontSize: "1rem", lineHeight: "1.8" }}
+                    style={{ fontSize: "1.1rem", lineHeight: "1.8" }}
                   >
                     <li>Desarrollo motriz y sensorial</li>
-                    <li>Iniciación a la lectoescritura</li>
+                    <li>Iniciación a la lectura y escritura</li>
                     <li>Expresión artística y musical</li>
                     <li>Desarrollo socioemocional</li>
                     <li>Inglés básico</li>
@@ -130,7 +189,7 @@ function AdmisionesPage() {
               >
                 <CardImg
                   alt="Educación Básica"
-                  src={require("assets/img/Alinambi/fotoAlinambiCuatro.jpg")}
+                  src={require("assets/img/Alinambi/grado-AlinambiTwo.jpg")}
                   top
                   style={{
                     objectFit: "cover",
@@ -154,13 +213,14 @@ function AdmisionesPage() {
                   >
                     Educación Básica
                   </CardTitle>
-                  <p className="text-white mb-4" style={{ fontSize: "1rem" }}>
+                  <br />
+                  <p className="text-white mb-4" style={{ fontSize: "1.2rem" }}>
                     Formación integral para estudiantes desde primero hasta
                     séptimo grado:
                   </p>
                   <ul
                     className="text-white pl-3"
-                    style={{ fontSize: "1rem", lineHeight: "1.8" }}
+                    style={{ fontSize: "1.1rem", lineHeight: "1.8" }}
                   >
                     <li>Materias básicas del currículo nacional</li>
                     <li>Programa avanzado de inglés</li>
@@ -186,36 +246,34 @@ function AdmisionesPage() {
                     style={{ color: "#333", fontSize: "1.4rem" }}
                   >
                     <span style={{ color: "#333" }}>
-                      Proceso de Inscripción
+                      Requisitos de Inscripción
                     </span>
                   </CardTitle>
                   <ol
                     className="text-dark"
                     style={{ fontSize: "1.1rem", lineHeight: "2" }}
                   >
-                    <li>Llenar formulario de inscripción en línea</li>
+                    <li>Llenar formulario de inscripción</li>
                     <li>Presentar documentación requerida</li>
                     <li>Entrevista con el departamento psicológico</li>
                     <li>Evaluación diagnóstica</li>
-                    <li>Entrevista con coordinación académica</li>
                     <li>Resultados de admisión</li>
                     <li>Proceso de matrícula</li>
                   </ol>
-                  <Link to="/matricula-page">
-                    <Button
-                      className="btn-lg btn-danger d-block mx-auto mt-4"
-                      style={{
-                        fontWeight: "bold",
-                        padding: "12px 25px",
-                        fontSize: "1rem",
-                        textTransform: "uppercase",
-                        letterSpacing: "2px",
-                        borderRadius: "30px",
-                      }}
-                    >
-                      Matrícula
-                    </Button>
-                  </Link>
+                  <Button
+                    className="btn-lg btn-danger d-block mx-auto mt-4"
+                    style={{
+                      fontWeight: "bold",
+                      padding: "12px 25px",
+                      fontSize: "1rem",
+                      textTransform: "uppercase",
+                      letterSpacing: "2px",
+                      borderRadius: "30px",
+                    }}
+                    onClick={DownloadFormularioIns}
+                  >
+                    Descargar Formulario de inscripción
+                  </Button>
                 </CardBody>
               </Card>
             </Col>
@@ -242,9 +300,8 @@ function AdmisionesPage() {
                     <li>Partida de nacimiento</li>
                     <li>Cédula de identidad del estudiante y representantes</li>
                     <li>Certificados de promoción anteriores</li>
-                    <li>Certificado de conducta</li>
                     <li>Certificado médico</li>
-                    <li>4 fotografías tamaño carnet</li>
+                    <li>6 fotografías tamaño carnet</li>
                     <li>Carnet de vacunación</li>
                   </ul>
                   <Button
@@ -257,6 +314,7 @@ function AdmisionesPage() {
                       letterSpacing: "2px",
                       borderRadius: "30px",
                     }}
+                    onClick={handleDownload}
                   >
                     Descargar Lista Completa
                   </Button>
@@ -273,23 +331,23 @@ function AdmisionesPage() {
                     className="text-center"
                     style={{ fontSize: "2rem", fontWeight: "bold" }}
                   >
-                    Información de Contacto
+                    ¿Tienes dudas? Contáctanos
                   </h3>
                   <Row className="mt-4">
                     <Col md="6" className="text-center">
                       <h5 className="text-white">Dirección</h5>
                       <p className="text-white">
-                        Calle Panzaleo E8-203, sector Fajardo
+                        Calle Panzaleo E8-213, por el sector Fajardo
                         <br />
-                        Sangolquí - Ecuador
+                        Conocoto - Ecuador
                       </p>
                     </Col>
                     <Col md="6" className="text-center">
                       <h5 className="text-white">Contacto</h5>
                       <p className="text-white">
-                        Teléfonos: 02-2344-544
+                        Teléfonos: (02)-234-4544 / 0994805054 / 0993968953
                         <br />
-                        Email: alinambiuio@yahoo.com
+                        Correo: ueefalinambi@gmail.com
                       </p>
                     </Col>
                   </Row>

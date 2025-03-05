@@ -1,16 +1,6 @@
-import React from "react";
-
-// reactstrap components
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
-  Button,
-  Label,
-  FormGroup,
-  Input,
-  NavItem,
-  NavLink,
-  Nav,
-  TabContent,
-  TabPane,
   Container,
   Row,
   Col,
@@ -19,29 +9,47 @@ import {
   CardBody,
   CardText,
 } from "reactstrap";
-
-// core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import DocentesHeader from "components/Headers/DocentesHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 import TeamSection from "views/secciones/quienesSomos/TeamSection.js";
 
 function DocentesPage() {
-  const [activeTab, setActiveTab] = React.useState("1");
+  const [docente, setDocente] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const toggle = (tab) => {
-    if (activeTab !== tab) {
-      setActiveTab(tab);
-    }
-  };
-
-  document.documentElement.classList.remove("nav-open");
-  React.useEffect(() => {
-    document.body.classList.add("landing-page");
-    return function cleanup() {
-      document.body.classList.remove("landing-page");
+  // Obtener los datos del docente al cargar el componente
+  useEffect(() => {
+    const fetchDocente = async () => {
+      try {
+        const response = await axios.get(
+          "https://alinambiback.onrender.com/api/teachersPic"
+        );
+        if (response.data.length > 0) {
+          setDocente(response.data[0]);
+        }
+      } catch (err) {
+        setError("Error al cargar los datos del docente.");
+      } finally {
+        setLoading(false);
+      }
     };
+
+    fetchDocente();
   }, []);
+
+  if (loading) {
+    return <div>Cargando...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!docente) {
+    return <div>No hay datos del docente disponibles.</div>;
+  }
 
   return (
     <>
@@ -51,12 +59,13 @@ function DocentesPage() {
         className="section profile-content"
         style={{
           backgroundImage:
-            "url(" + require("assets/img/Alinambi/Wallpaper.jpg") + ")",
+            "url(" + require("assets/img/Alinambi/wallpaperTwo.jpeg") + ")",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
           minHeight: "100vh",
           paddingTop: "0",
+          marginTop: "-48px",
         }}
       >
         <Container className="mt-5">
@@ -69,6 +78,7 @@ function DocentesPage() {
                   fontWeight: "bold",
                   color: "#1E90FF",
                   marginBottom: "35px",
+                  marginTop: "25px",
                 }}
               >
                 Contamos con docentes de calidad
@@ -81,7 +91,7 @@ function DocentesPage() {
                 {/* Imagen en la parte superior */}
                 <CardImg
                   top
-                  src={require("assets/img/Alinambi/DocentesAlinambi.jpeg")}
+                  src={`https://alinambiback.onrender.com/api/teacher-images/${docente.filename}`}
                   alt="imagen de docentes en cabecera"
                   className="img-fluid w-100"
                   style={{ maxHeight: "400px", objectFit: "cover" }}
@@ -91,13 +101,13 @@ function DocentesPage() {
                     className="fw-semibold text-muted"
                     style={{ fontSize: "20px", fontWeight: "bold" }}
                   >
-                    Este es nuestro personal docente para este periodo académico
+                    {docente.description}{" "}
                   </CardText>
                 </CardBody>
               </Card>
             </Col>
           </Row>
-          {/* Sección Ejecutivos*/}
+          {/* Sección Consejo estudiantil*/}
           <TeamSection />
         </Container>
       </div>

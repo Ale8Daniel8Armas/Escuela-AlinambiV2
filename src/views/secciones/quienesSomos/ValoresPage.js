@@ -1,16 +1,6 @@
 import React from "react";
 
-// reactstrap components
 import {
-  Button,
-  Label,
-  FormGroup,
-  Input,
-  NavItem,
-  NavLink,
-  Nav,
-  TabContent,
-  TabPane,
   Container,
   Row,
   Col,
@@ -21,20 +11,11 @@ import {
   CardImg,
 } from "reactstrap";
 
-// core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import ValoresHeader from "components/Headers/ValoresHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 
 function ValoresPage() {
-  const [activeTab, setActiveTab] = React.useState("1");
-
-  const toggle = (tab) => {
-    if (activeTab !== tab) {
-      setActiveTab(tab);
-    }
-  };
-
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
     document.body.classList.add("landing-page");
@@ -51,7 +32,7 @@ function ValoresPage() {
         className="section profile-content"
         style={{
           backgroundImage:
-            "url(" + require("assets/img/Alinambi/Wallpaper.jpg") + ")",
+            "url(" + require("assets/img/Alinambi/wallpaperTwo.jpeg") + ")",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
@@ -123,11 +104,11 @@ function ValoresPage() {
                   fontWeight: "500",
                 }}
               >
-                En la Unidad Educativa Fiscomisional, nos regimos por principios
-                que forman ciudadanos íntegros, comprometidos con el bienestar
-                común y el desarrollo de una sociedad justa y solidaria.
-                Inspirados en nuestro lema, cultivamos los siguientes valores
-                fundamentales:
+                En la Escuela de Educación Básica Fiscomisional Aliñambi, nos
+                regimos por principios que forman ciudadanos íntegros,
+                comprometidos con el bienestar común y el desarrollo de una
+                sociedad justa y solidaria. Inspirados en nuestro lema,
+                cultivamos los siguientes valores fundamentales:
               </p>
             </Col>
           </Row>
@@ -144,19 +125,19 @@ function ValoresPage() {
                 title: "Justicia",
                 text: "Buscamos el respeto por los derechos de todas las personas, promoviendo un ambiente en el que la equidad y la dignidad sean la base de nuestras interacciones diarias. La justicia nos guía en la toma de decisiones y en la formación de ciudadanos responsables.",
                 img: require("assets/img/Alinambi/JusticiaIcon.jpg"),
-                color: "danger",
+                color: "success",
               },
               {
                 title: "Verdad",
                 text: "Creemos en la importancia de decir la verdad y vivir en coherencia con ella. La honestidad es el pilar sobre el cual construimos relaciones de confianza y credibilidad en nuestra comunidad educativa.",
                 img: require("assets/img/Alinambi/VerdadIcon.jpg"),
-                color: "success",
+                color: "info",
               },
               {
                 title: "Amistad",
                 text: "Valoramos el compañerismo y el respeto mutuo, fortaleciendo lazos de fraternidad entre estudiantes, docentes y familias. Creemos que la verdadera amistad se basa en el respeto, la lealtad y el amor al prójimo.",
                 img: require("assets/img/Alinambi/AmistadIcon.jpg"),
-                color: "warning",
+                color: "success",
               },
             ].map((valor, index) => (
               <Col md="12" key={index}>

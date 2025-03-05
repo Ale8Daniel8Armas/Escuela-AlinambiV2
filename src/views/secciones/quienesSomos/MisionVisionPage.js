@@ -1,15 +1,5 @@
-import React from "react";
-
-//components
-import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
-import MisionVisionHeader from "components/Headers/MisionVisionHeader.js";
-import DemoFooter from "components/Footers/DemoFooter.js";
-
+import React, { useState, useEffect } from "react";
 import {
-  Button,
-  Label,
-  FormGroup,
-  Input,
   NavItem,
   NavLink,
   Nav,
@@ -19,9 +9,58 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import axios from "axios";
+import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
+import MisionVisionHeader from "components/Headers/MisionVisionHeader.js";
+import DemoFooter from "components/Footers/DemoFooter.js";
 
 function SeccionVisionMision() {
-  const [activeTab, setActiveTab] = React.useState("1");
+  const [activeTab, setActiveTab] = useState("1");
+  const [mision, setMision] = useState(null);
+  const [vision, setVision] = useState(null);
+
+  // Mensajes por defecto
+  const defaultMision = {
+    description:
+      "Formar integralmente a estudiantes con excelencia académica y valores humanos, mediante una educación personalizada que potencia el pensamiento crítico, la creatividad y el compromiso social. Nos dedicamos a cultivar mentes curiosas y corazones compasivos, preparando a nuestros alumnos para ser líderes éticos y ciudadanos globales que contribuyan positivamente a la sociedad.",
+    image: require("assets/img/Alinambi/graduacionV2.jpg"),
+  };
+
+  const defaultVision = {
+    description:
+      "Ser reconocidos como una institución educativa líder en innovación pedagógica, que inspire a cada estudiante a alcanzar su máximo potencial académico y personal. Aspiramos a crear un ambiente educativo donde la excelencia académica, la innovación tecnológica y los valores humanos se fusionen para formar individuos capaces de enfrentar los desafíos del siglo XXI con confianza y responsabilidad social.",
+    image: require("assets/img/Alinambi/fotoAlinambiVeintiCinco.jpg"),
+  };
+
+  // Obtener los datos de la Misión y Visión al cargar el componente
+  useEffect(() => {
+    fetchMision();
+    fetchVision();
+  }, []);
+
+  // Obtener Misión
+  const fetchMision = async () => {
+    try {
+      const response = await axios.get(
+        "https://alinambiback.onrender.com/api/mision"
+      );
+      if (response.data) {
+        setMision(response.data);
+      }
+    } catch (error) {}
+  };
+
+  // Obtener Visión
+  const fetchVision = async () => {
+    try {
+      const response = await axios.get(
+        "https://alinambiback.onrender.com/api/vision"
+      );
+      if (response.data) {
+        setVision(response.data);
+      }
+    } catch (error) {}
+  };
 
   const toggle = (tab) => {
     if (activeTab !== tab) {
@@ -45,7 +84,7 @@ function SeccionVisionMision() {
         className="section profile-content"
         style={{
           backgroundImage:
-            "url(" + require("assets/img/Alinambi/Wallpaper.jpg") + ")",
+            "url(" + require("assets/img/Alinambi/wallpaperTwo.jpeg") + ")",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
@@ -89,6 +128,7 @@ function SeccionVisionMision() {
                     style={{
                       fontSize: "1.125rem",
                       fontWeight: "600",
+                      color: "17174A",
                       textTransform: "uppercase",
                       letterSpacing: "1.5px",
                       transition: "all 0.3s ease",
@@ -113,6 +153,7 @@ function SeccionVisionMision() {
                     style={{
                       fontSize: "1.125rem",
                       fontWeight: "600",
+                      color: "17174A",
                       textTransform: "uppercase",
                       letterSpacing: "1.5px",
                       transition: "all 0.3s ease",
@@ -147,7 +188,11 @@ function SeccionVisionMision() {
                     <img
                       alt="Misión"
                       className="img-rounded img-responsive"
-                      src={require("assets/img/Alinambi/graduacionV2.jpg")}
+                      src={
+                        mision?.filename
+                          ? `https://alinambiback.onrender.com/api/mision-images/${mision.filename}`
+                          : defaultMision.image
+                      }
                       style={{
                         maxWidth: "100%",
                         height: "500px",
@@ -156,7 +201,7 @@ function SeccionVisionMision() {
                     />
                     <h3
                       style={{
-                        color: "#34495e",
+                        color: "#17174A",
                         fontSize: "2rem",
                         fontWeight: "700",
                       }}
@@ -172,14 +217,7 @@ function SeccionVisionMision() {
                         lineHeight: "1.8",
                       }}
                     >
-                      Formar integralmente a estudiantes con excelencia
-                      académica y valores humanos, mediante una educación
-                      personalizada que potencia el pensamiento crítico, la
-                      creatividad y el compromiso social. Nos dedicamos a
-                      cultivar mentes curiosas y corazones compasivos,
-                      preparando a nuestros alumnos para ser líderes éticos y
-                      ciudadanos globales que contribuyan positivamente a la
-                      sociedad.
+                      {mision?.description || defaultMision.description}
                     </p>
                   </div>
                 </Col>
@@ -199,7 +237,11 @@ function SeccionVisionMision() {
                     <img
                       alt="Visión"
                       className="img-rounded img-responsive"
-                      src={require("assets/img/Alinambi/fotoAlinambiVeintiCinco.jpg")}
+                      src={
+                        vision?.filename
+                          ? `https://alinambiback.onrender.com/api/vision-images/${vision.filename}`
+                          : defaultVision.image
+                      }
                       style={{
                         maxWidth: "100%",
                         height: "500px",
@@ -208,7 +250,7 @@ function SeccionVisionMision() {
                     />
                     <h3
                       style={{
-                        color: "#34495e",
+                        color: "#17174A",
                         fontSize: "2rem",
                         fontWeight: "700",
                       }}
@@ -223,14 +265,7 @@ function SeccionVisionMision() {
                         lineHeight: "1.8",
                       }}
                     >
-                      Ser reconocidos como una institución educativa líder en
-                      innovación pedagógica, que inspire a cada estudiante a
-                      alcanzar su máximo potencial académico y personal.
-                      Aspiramos a crear un ambiente educativo donde la
-                      excelencia académica, la innovación tecnológica y los
-                      valores humanos se fusionen para formar individuos capaces
-                      de enfrentar los desafíos del siglo XXI con confianza y
-                      responsabilidad social.
+                      {vision?.description || defaultVision.description}
                     </p>
                   </div>
                 </Col>

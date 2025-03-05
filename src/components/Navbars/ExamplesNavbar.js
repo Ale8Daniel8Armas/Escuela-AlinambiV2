@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import classnames from "classnames";
 import {
   Collapse,
-  NavbarBrand,
   Navbar,
   NavItem,
   NavLink,
@@ -50,13 +49,13 @@ function ExamplesNavbar() {
   React.useEffect(() => {
     const updateNavbarColor = () => {
       if (
-        document.documentElement.scrollTop > 299 ||
-        document.body.scrollTop > 299
+        document.documentElement.scrollTop > 109 ||
+        document.body.scrollTop > 109
       ) {
         setNavbarColor("");
       } else if (
-        document.documentElement.scrollTop < 300 ||
-        document.body.scrollTop < 300
+        document.documentElement.scrollTop < 110 ||
+        document.body.scrollTop < 110
       ) {
         setNavbarColor("navbar-transparent");
       }
@@ -86,7 +85,7 @@ function ExamplesNavbar() {
       <div
         style={{
           width: "0%",
-          height: "16vh",
+          height: isMobileScreen ? "17vh" : "15vh",
           backgroundColor: "#000000",
         }}
       >
@@ -110,8 +109,87 @@ function ExamplesNavbar() {
             style={{
               paddingLeft: "10px",
               maxWidth: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
             }}
           >
+            <NavItem
+              to="/homePage"
+              target="_blank"
+              tag={Link}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                marginRight: "auto",
+              }}
+            >
+              <img
+                src={require("assets/img/Alinambi/LogoAlinambiT.png")}
+                alt="Logo de Empresa"
+                style={{
+                  maxHeight: "65px",
+                  width: "auto",
+                  objectFit: "contain",
+                  marginLeft: "-20px",
+                }}
+              />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "2px",
+                  maxWidth: "100%",
+                  marginLeft: "-5px",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "22px",
+                    fontWeight: "800",
+                    color:
+                      navbarColor === "navbar-transparent"
+                        ? "#81AE3A"
+                        : "#FFFFFF",
+                    lineHeight: "1.1",
+                    fontFamily: "'Montserrat', sans-serif",
+                  }}
+                >
+                  Escuela de Educación
+                </span>
+                <span
+                  style={{
+                    fontSize: "22px",
+                    fontWeight: "800",
+                    color:
+                      navbarColor === "navbar-transparent"
+                        ? "#81AE3A"
+                        : "#FFFFFF",
+                    lineHeight: "1.1",
+                    fontFamily: "'Montserrat', sans-serif",
+                  }}
+                >
+                  Básica Fiscomisional
+                </span>
+                <span
+                  style={{
+                    fontSize: "24px",
+                    fontWeight: "900",
+                    color:
+                      navbarColor === "navbar-transparent"
+                        ? "#17174A"
+                        : "#1E9FDB",
+                    lineHeight: "1.1",
+                    textAlign: "center",
+                    fontFamily: "'Montserrat', sans-serif",
+                  }}
+                >
+                  Aliñambi
+                </span>
+              </div>
+            </NavItem>
+
             <Button
               aria-expanded={navbarCollapse}
               className={classnames("navbar-toggler burger-menu", {
@@ -129,14 +207,15 @@ function ExamplesNavbar() {
               <span className="navbar-toggler-bar bar2" />
               <span className="navbar-toggler-bar bar3" />
             </Button>
+
             <Collapse
               style={{
                 display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-end",
+                justifyContent: "center",
+                alignItems: "center",
                 flexDirection: isLargeScreen ? "column" : "row",
                 ...(isMobileScreen && {
-                  padding: "0",
+                  padding: "10px 0px",
                   backgroundColor: "#9CC066",
                 }),
               }}
@@ -147,68 +226,27 @@ function ExamplesNavbar() {
                 navbar
                 style={{
                   flexDirection: isLargeScreen ? "column" : "row",
-                  marginLeft: "auto",
-                  gap: isMobileScreen ? "0" : "12px",
+                  gap: isMobileScreen ? "10px" : "20px",
                   width: isMobileScreen ? "100%" : "auto",
+                  alignItems: "center",
+                  position: "relative",
                 }}
               >
-                <NavItem
-                  to="/homePage"
-                  target="_blank"
-                  tag={Link}
+                <Button
+                  className="btn-close d-lg-none"
+                  onClick={toggleNavbarCollapse}
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                    marginRight: "170px",
-                    marginLeft: "10px",
+                    position: "absolute",
+                    top: "0px",
+                    right: "10px",
+                    fontSize: "24px",
+                    color: "#fff",
+                    background: "none",
+                    border: "none",
                   }}
                 >
-                  <img
-                    src={require("assets/img/Alinambi/LogoAlinambiT.png")}
-                    alt="Logo de Empresa"
-                    style={{
-                      maxHeight: "65px",
-                      width: "auto",
-                      objectFit: "contain",
-                    }}
-                  />
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      gap: "2px",
-                      marginLeft: "5px",
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontSize: "22px",
-                        fontWeight: "800",
-                        color:
-                          navbarColor === "navbar-transparent"
-                            ? "#98FF98"
-                            : "#FFFFFF",
-                        lineHeight: "1.1",
-                        fontFamily: "'Montserrat', sans-serif",
-                      }}
-                    >
-                      Unidad Educativa
-                    </span>
-                    <span
-                      style={{
-                        fontSize: "24px",
-                        fontWeight: "900",
-                        color: "#1A9BD5",
-                        lineHeight: "1.1",
-                        fontFamily: "'Montserrat', sans-serif",
-                      }}
-                    >
-                      Aliñambi
-                    </span>
-                  </div>
-                </NavItem>
+                  <i className="fa-solid fa-xmark"></i>
+                </Button>
                 <NavItem>
                   <UncontrolledDropdown
                     nav
@@ -229,8 +267,16 @@ function ExamplesNavbar() {
                       <h1
                         style={{
                           fontSize: "14px",
-                          color: "#000000",
-                          marginTop: "20px",
+                          color:
+                            navbarColor !== "navbar-transparent" &&
+                            !isMobileScreen
+                              ? "#ffffff"
+                              : isMobileScreen
+                              ? "#ffffff"
+                              : "#000000",
+                          marginTop: isMobileScreen ? "70px" : "33px",
+                          marginBottom: isMobileScreen ? "-60px" : "20px",
+                          marginLeft: isMobileScreen ? "-20px" : "25px",
                           fontFamily: "'Montserrat', sans-serif",
                         }}
                       >
@@ -241,10 +287,11 @@ function ExamplesNavbar() {
                       aria-labelledby="quienesSomosNavbarDropdownMenu"
                       style={{
                         fontFamily: "'Montserrat', sans-serif",
-                        marginBottom: isMobileScreen ? "-440px" : "-230px",
-                        position: isMobileScreen ? "static" : "absolute",
+                        position: isMobileScreen ? "absolute" : "absolute",
+                        top: isMobileScreen ? "100%" : "0",
                         width: isMobileScreen ? "100%" : "auto",
-                        padding: isMobileScreen ? "0" : undefined,
+                        padding: isMobileScreen ? "0px" : undefined,
+                        zIndex: 1000,
                       }}
                     >
                       <DropdownItem
@@ -252,6 +299,7 @@ function ExamplesNavbar() {
                         tag={Link}
                         style={{
                           fontFamily: "'Montserrat', sans-serif",
+                          color: "#17174A",
                           backgroundColor: "#98FF98",
                           padding: isMobileScreen ? "8px 12px" : undefined,
                           margin: isMobileScreen ? "0" : undefined,
@@ -266,6 +314,7 @@ function ExamplesNavbar() {
                         href="/historia-page"
                         style={{
                           fontFamily: "'Montserrat', sans-serif",
+                          color: "#17174A",
                           backgroundColor: "#98FF98",
                           padding: isMobileScreen ? "8px 12px" : undefined,
                           margin: isMobileScreen ? "0" : undefined,
@@ -280,6 +329,7 @@ function ExamplesNavbar() {
                         href="/valores-page"
                         style={{
                           fontFamily: "'Montserrat', sans-serif",
+                          color: "#17174A",
                           backgroundColor: "#98FF98",
                           padding: isMobileScreen ? "8px 12px" : undefined,
                           margin: isMobileScreen ? "0" : undefined,
@@ -294,6 +344,7 @@ function ExamplesNavbar() {
                         href="/docentes-page"
                         style={{
                           fontFamily: "'Montserrat', sans-serif",
+                          color: "#17174A",
                           backgroundColor: "#98FF98",
                           padding: isMobileScreen ? "8px 12px" : undefined,
                           margin: isMobileScreen ? "0" : undefined,
@@ -327,8 +378,16 @@ function ExamplesNavbar() {
                       <h1
                         style={{
                           fontSize: "14px",
-                          color: "#000000",
-                          marginTop: "20px",
+                          color:
+                            navbarColor !== "navbar-transparent" &&
+                            !isMobileScreen
+                              ? "#ffffff"
+                              : isMobileScreen
+                              ? "#ffffff"
+                              : "#000000",
+                          marginTop: isMobileScreen ? "60px" : "33px",
+                          marginBottom: isMobileScreen ? "-20px" : "20px",
+                          marginLeft: isMobileScreen ? "0" : "10px",
                           fontFamily: "'Montserrat', sans-serif",
                         }}
                       >
@@ -339,16 +398,18 @@ function ExamplesNavbar() {
                       aria-labelledby="ofertaEducativaNavbarDropdownMenu"
                       style={{
                         fontFamily: "'Montserrat', sans-serif",
-                        marginBottom: isMobileScreen ? "-440px" : "-270px",
-                        position: isMobileScreen ? "static" : "absolute",
+                        position: isMobileScreen ? "absolute" : "absolute",
+                        top: isMobileScreen ? "100%" : "0",
                         width: isMobileScreen ? "100%" : "auto",
                         padding: isMobileScreen ? "0" : undefined,
+                        zIndex: 1000,
                       }}
                     >
                       <DropdownItem
                         href="/admisiones-page"
                         style={{
                           fontFamily: "'Montserrat', sans-serif",
+                          color: "#17174A",
                           backgroundColor: "#98FF98",
                           padding: isMobileScreen ? "8px 12px" : undefined,
                           margin: isMobileScreen ? "0" : undefined,
@@ -363,6 +424,7 @@ function ExamplesNavbar() {
                         href="/edInicial-page"
                         style={{
                           fontFamily: "'Montserrat', sans-serif",
+                          color: "#17174A",
                           backgroundColor: "#98FF98",
                           padding: isMobileScreen ? "8px 12px" : undefined,
                           margin: isMobileScreen ? "0" : undefined,
@@ -378,6 +440,7 @@ function ExamplesNavbar() {
                         style={{
                           fontFamily: "'Montserrat', sans-serif",
                           backgroundColor: "#98FF98",
+                          color: "#17174A",
                           padding: isMobileScreen ? "8px 12px" : undefined,
                           margin: isMobileScreen ? "0" : undefined,
                           borderBottom: isMobileScreen
@@ -392,6 +455,7 @@ function ExamplesNavbar() {
                         style={{
                           fontFamily: "'Montserrat', sans-serif",
                           backgroundColor: "#98FF98",
+                          color: "#17174A",
                           padding: isMobileScreen ? "8px 12px" : undefined,
                           margin: isMobileScreen ? "0" : undefined,
                           borderBottom: isMobileScreen
@@ -406,6 +470,7 @@ function ExamplesNavbar() {
                         style={{
                           fontFamily: "'Montserrat', sans-serif",
                           backgroundColor: "#98FF98",
+                          color: "#17174A",
                           padding: isMobileScreen ? "8px 12px" : undefined,
                           margin: isMobileScreen ? "0" : undefined,
                           borderBottom: isMobileScreen
@@ -438,8 +503,15 @@ function ExamplesNavbar() {
                       <h1
                         style={{
                           fontSize: "14px",
-                          color: "#000000",
-                          marginTop: "20px",
+                          color:
+                            navbarColor !== "navbar-transparent" &&
+                            !isMobileScreen
+                              ? "#ffffff"
+                              : isMobileScreen
+                              ? "#ffffff"
+                              : "#000000",
+                          marginTop: isMobileScreen ? "0" : "20px",
+                          marginLeft: isMobileScreen ? "-40px" : "10px",
                           fontFamily: "'Montserrat', sans-serif",
                         }}
                       >
@@ -450,16 +522,18 @@ function ExamplesNavbar() {
                       aria-labelledby="infoNavbarDropdownMenu"
                       style={{
                         fontFamily: "'Montserrat', sans-serif",
-                        marginBottom: isMobileScreen ? "-440px" : "-250px",
-                        position: isMobileScreen ? "static" : "absolute",
+                        position: isMobileScreen ? "absolute" : "absolute",
+                        top: isMobileScreen ? "100%" : "0",
                         width: isMobileScreen ? "100%" : "auto",
                         padding: isMobileScreen ? "0" : undefined,
+                        zIndex: 1000,
                       }}
                     >
                       <DropdownItem
                         href="/convenios-page"
                         style={{
                           fontFamily: "'Montserrat', sans-serif",
+                          color: "#17174A",
                           backgroundColor: "#98FF98",
                           padding: isMobileScreen ? "8px 12px" : undefined,
                           margin: isMobileScreen ? "0" : undefined,
@@ -474,6 +548,7 @@ function ExamplesNavbar() {
                         href="/matricula-page"
                         style={{
                           fontFamily: "'Montserrat', sans-serif",
+                          color: "#17174A",
                           backgroundColor: "#98FF98",
                           padding: isMobileScreen ? "8px 12px" : undefined,
                           margin: isMobileScreen ? "0" : undefined,
@@ -489,6 +564,7 @@ function ExamplesNavbar() {
                         style={{
                           fontFamily: "'Montserrat', sans-serif",
                           backgroundColor: "#98FF98",
+                          color: "#17174A",
                           padding: isMobileScreen ? "8px 12px" : undefined,
                           margin: isMobileScreen ? "0" : undefined,
                           borderBottom: isMobileScreen
@@ -496,13 +572,14 @@ function ExamplesNavbar() {
                             : "none",
                         }}
                       >
-                        Cronogramas
+                        Cronograma
                       </DropdownItem>
                       <DropdownItem
                         href="/boletines-page"
                         style={{
                           fontFamily: "'Montserrat', sans-serif",
                           backgroundColor: "#98FF98",
+                          color: "#17174A",
                           padding: isMobileScreen ? "8px 12px" : undefined,
                           margin: isMobileScreen ? "0" : undefined,
                           borderBottom: isMobileScreen
@@ -517,6 +594,7 @@ function ExamplesNavbar() {
                         style={{
                           fontFamily: "'Montserrat', sans-serif",
                           backgroundColor: "#98FF98",
+                          color: "#17174A",
                           padding: isMobileScreen ? "8px 12px" : undefined,
                           margin: isMobileScreen ? "0" : undefined,
                           borderBottom: isMobileScreen
@@ -534,21 +612,31 @@ function ExamplesNavbar() {
                     to="/servicios-page"
                     tag={Link}
                     style={{
-                      padding: "8px 12px",
-                      marginBottom: isMobileScreen ? "-20px" : "-20px",
+                      marginTop: isMobileScreen ? "0px" : "7px",
+                      marginBottom: isMobileScreen ? "-80px" : "0px",
                       width: isMobileScreen ? "100%" : "auto",
+                      marginLeft: isMobileScreen ? "-80px" : "0px",
+                      position: isMobileScreen ? "static" : "absolute",
+                      zIndex: "2000",
+                      padding: isMobileScreen ? "8px 12px" : undefined,
                     }}
                   >
-                    <h6
+                    <h1
                       style={{
                         fontSize: "14px",
-                        color: "#000000",
-                        marginTop: "20px",
+                        color:
+                          navbarColor !== "navbar-transparent" &&
+                          !isMobileScreen
+                            ? "#ffffff"
+                            : isMobileScreen
+                            ? "#ffffff"
+                            : "#000000",
+                        marginTop: "-20px",
                         fontFamily: "'Montserrat', sans-serif",
                       }}
                     >
                       <b>Servicios</b>
-                    </h6>
+                    </h1>
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -556,21 +644,50 @@ function ExamplesNavbar() {
                     to="/contactos-page"
                     tag={Link}
                     style={{
-                      padding: "8px 12px",
-                      marginBottom: isMobileScreen ? "0" : "-20px",
+                      marginTop: isMobileScreen ? "40px" : "7px",
+                      marginBottom: isMobileScreen ? "-20px" : "0px",
                       width: isMobileScreen ? "100%" : "auto",
+                      marginLeft: isMobileScreen ? "-70px" : "100px",
+                      zIndex: "2000",
+                      position: isMobileScreen ? "static" : "absolute",
+                      padding: isMobileScreen ? "8px 12px" : undefined,
                     }}
                   >
-                    <h6
+                    <h1
                       style={{
                         fontSize: "14px",
-                        color: "#000000",
-                        marginTop: "20px",
+                        color:
+                          navbarColor !== "navbar-transparent" &&
+                          !isMobileScreen
+                            ? "#ffffff"
+                            : isMobileScreen
+                            ? "#ffffff"
+                            : "#000000",
+                        marginTop: "-20px",
                         fontFamily: "'Montserrat', sans-serif",
                       }}
                     >
                       <b>Contactos</b>
-                    </h6>
+                    </h1>
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink>
+                    <Button
+                      href="/register-page"
+                      className="btn-round btn-icon"
+                      color="danger"
+                      size="md"
+                      style={{
+                        marginTop: "20px",
+                        marginLeft: isMobileScreen ? "-40px" : "210px",
+                        maxWidth: "100%",
+                        alignContent: "center",
+                        paddingLeft: "8px",
+                      }}
+                    >
+                      <i className="fa-solid fa-arrow-right-to-bracket"></i>
+                    </Button>
                   </NavLink>
                 </NavItem>
               </Nav>

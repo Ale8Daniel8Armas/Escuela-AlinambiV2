@@ -13,15 +13,15 @@ const ServicesContent = () => {
     {
       title: "Centro médico",
       description:
-        "Los servicios de nuestro centro médico abarcan la atención integral de la salud, ofreciendo consultas médicas generales y especializadas, exámenes de laboratorio, atención de emergencias, vacunación y procedimientos ambulatorios. La finalidad es brindar un servicio de calidad, accesible y eficiente, priorizando el bienestar y la seguridad de los pacientes a través de un equipo profesional y tecnología adecuada.",
+        "Los servicios de nuestro centro médico abarcan la atención integral de la salud, ofreciendo asesoramiento médico especializado, atención de emergencias, vacunación y procedimientos ambulatorios. La finalidad es brindar un servicio de calidad, accesible y eficiente, priorizando el bienestar y la seguridad de los estudiantes a través de un equipo profesional.",
       image: require("assets/img/Alinambi/fotoAlinambiDiecinueve.jpg"),
       imagePosition: "right",
     },
     {
-      title: "Transporte",
+      title: "Orientación y Consejería Escolar",
       description:
-        "Contamos con servicios de transporte que ofrecen soluciones de movilidad eficientes y seguras para nuestros estudiantes. Su objetivo es garantizar traslados cómodos, puntuales y confiables, optimizando rutas y recursos para brindar un servicio accesible y de calidad.",
-      image: require("assets/img/Alinambi/transporte.jpg"),
+        "Contamos con un departamento de orientación psicológica que trabaja en estrecha colaboración con docentes, padres y estudiantes para crear un entorno educativo seguro y acogedor por el bienestar de los estudiantes.",
+      image: require("assets/img/Alinambi/psicologia.jpg"),
       imagePosition: "left",
     },
   ];
@@ -57,8 +57,8 @@ const ServicesContent = () => {
                       <p
                         className="description"
                         style={{
-                          fontSize: "1rem",
-                          fontWeight: "400",
+                          fontSize: "1.2rem",
+                          fontWeight: "500",
                           color: "#4A4A4A",
                         }}
                       >
@@ -92,8 +92,8 @@ const ServicesContent = () => {
                       <p
                         className="description"
                         style={{
-                          fontSize: "1rem",
-                          fontWeight: "400",
+                          fontSize: "1.2rem",
+                          fontWeight: "500",
                           color: "#4A4A4A",
                         }}
                       >

@@ -10,7 +10,6 @@ import {
   CardText,
 } from "reactstrap";
 
-// components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import ConveniosHeader from "components/Headers/ConveniosHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
@@ -27,9 +26,9 @@ function ConveniosPage() {
       title: "Convenios Académicos",
       image: require("assets/img/Alinambi/convenios-academicos.jpg"),
       items: [
-        "Programas de intercambio",
+        "Programas de ubicación y nivelación",
         "Certificaciones especializadas",
-        "Alianzas con Universidades e Intitutos de prestigio como la ESPE, PUCE o el Instituto Tecnológico de Rumiñahui",
+        "Alianzas con Universidades e Intitutos de prestigio, como lo son la ESPE, PUCE o el Instituto Tecnológico Universitario Rumiñahui",
       ],
     },
     {
@@ -61,14 +60,14 @@ function ConveniosPage() {
       items: [
         "Acceso a recursos educativos",
         "Programas de mentoría",
-        "Becas y descuentos",
+        "Acercamientos con preprofesionales universitarios",
       ],
     },
     {
       title: "Deportivos",
       items: [
         "Uso de instalaciones",
-        "Entrenamiento especializado",
+        "Fomento al espíritu deportivo",
         "Participación en torneos",
       ],
     },
@@ -90,7 +89,7 @@ function ConveniosPage() {
         className="section"
         style={{
           backgroundImage:
-            "url(" + require("assets/img/Alinambi/Wallpaper.jpg") + ")",
+            "url(" + require("assets/img/Alinambi/wallpaperTwo.jpeg") + ")",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
@@ -118,10 +117,10 @@ function ConveniosPage() {
               <h5
                 className="text-center justify-content-center description"
                 style={{
-                  fontSize: "22px",
+                  fontSize: "24px",
                   color: "black",
                   marginTop: "30px",
-                  fontWeight: "500",
+                  fontWeight: "400",
                 }}
               >
                 Mantenemos alianzas estratégicas con instituciones nacionales e
@@ -149,7 +148,7 @@ function ConveniosPage() {
                       className="d-flex flex-column"
                       style={{
                         background:
-                          "linear-gradient(45deg, rgba(255, 187, 89, 0.95), rgba(60, 120, 180, 0.85))",
+                          "linear-gradient(135deg, #32CD32 0%, #98FB98 100%)",
                         borderBottomLeftRadius: "8px",
                         borderBottomRightRadius: "8px",
                       }}

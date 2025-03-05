@@ -63,11 +63,12 @@ const AlianzaCarousel = () => {
           </h2>
           <p
             style={{
-              color: "#666",
+              color: "black",
               fontSize: "1.1rem",
               maxWidth: "800px",
               margin: "0 auto",
               lineHeight: "1.6",
+              fontWeight: "400",
             }}
           >
             Comprometidos con la excelencia educativa a través de colaboraciones
@@ -132,10 +133,11 @@ const AlianzaCarousel = () => {
                   </h3>
                   <p
                     style={{
-                      color: "#666",
+                      color: "#black",
                       fontSize: "1.1rem",
                       lineHeight: "1.6",
                       marginBottom: "0",
+                      fontWeight: "400",
                     }}
                   >
                     {item.description}

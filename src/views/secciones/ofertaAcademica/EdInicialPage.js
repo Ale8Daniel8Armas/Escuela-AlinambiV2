@@ -10,7 +10,6 @@ import {
   CardText,
 } from "reactstrap";
 
-// components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import EdInicialHeader from "components/Headers/EdInicialHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
@@ -29,7 +28,7 @@ function EdInicialPage() {
         className="section"
         style={{
           backgroundImage:
-            "url(" + require("assets/img/Alinambi/Wallpaper.jpg") + ")",
+            "url(" + require("assets/img/Alinambi/wallpaperTwo.jpeg") + ")",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
@@ -57,10 +56,10 @@ function EdInicialPage() {
               <h5
                 className="text-center justify-content-center description"
                 style={{
-                  fontSize: "22px",
+                  fontSize: "24px",
                   color: "black",
                   marginTop: "30px",
-                  fontWeight: "500",
+                  fontWeight: "400",
                 }}
               >
                 Formamos a nuestros pequeños estudiantes en un ambiente seguro,
@@ -81,21 +80,19 @@ function EdInicialPage() {
                   }}
                   top
                 />
-                <CardBody
-                  style={{ backgroundColor: "rgba(58, 241, 180, 0.93)" }}
-                >
+                <CardBody style={{ backgroundColor: "rgb(30,159,219)" }}>
                   <CardTitle
                     tag="h3"
                     className="text-white text-center"
                     style={{ fontWeight: "bold" }}
                   >
-                    <b style={{ color: "#343a40" }}>Inicial 2 (4 años)</b>
+                    <b style={{ color: "#ffffff" }}>Inicial 2 (4 años)</b>
                   </CardTitle>
                   <br />
                   <CardText className="text-white">
                     <ul style={{ fontWeight: "bold" }}>
                       <li>Desarrollo motriz fino y grueso</li>
-                      <li>Iniciación a la lectoescritura</li>
+                      <li>Entrenamiento de la lectura y escritura</li>
                       <li>Expresión artística y musical</li>
                       <li>Desarrollo socioemocional</li>
                       <li>Inglés básico</li>
@@ -119,16 +116,16 @@ function EdInicialPage() {
                     className="text-white text-center"
                     style={{ fontWeight: "bold" }}
                   >
-                    <b style={{ color: "#343a40" }}>Preparatoria (5 años)</b>
+                    <b style={{ color: "#ffffff" }}>Preparatoria (5 años)</b>
                   </CardTitle>
                   <br />
                   <CardText className="text-white">
                     <ul style={{ fontWeight: "bold" }}>
-                      <li>Lectoescritura avanzada</li>
+                      <li>Lectura y escritura avanzada</li>
                       <li>Pensamiento lógico-matemático</li>
                       <li>Desarrollo de la creatividad</li>
                       <li>Habilidades sociales</li>
-                      <li>Inglés intermedio</li>
+                      <li>Inglés Elemental</li>
                     </ul>
                   </CardText>
                 </CardBody>

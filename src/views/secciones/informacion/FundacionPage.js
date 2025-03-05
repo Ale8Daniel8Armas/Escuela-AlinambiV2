@@ -30,7 +30,7 @@ function FundacionPage() {
         className="section"
         style={{
           backgroundImage:
-            "url(" + require("assets/img/Alinambi/Wallpaper.jpg") + ")",
+            "url(" + require("assets/img/Alinambi/wallpaperTwo.jpeg") + ")",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
@@ -59,13 +59,13 @@ function FundacionPage() {
               <h5
                 className="text-center description justify-content-center description"
                 style={{
-                  fontSize: "22px",
+                  fontSize: "24px",
                   color: "black",
                   marginTop: "30px",
-                  fontWeight: "500",
+                  fontWeight: "400",
                 }}
               >
-                Alinambi es una institución que busca fortalecer la educación
+                Aliñambi es una institución que busca fortalecer la educación
                 general básica en la comunidad de Alinambi, de manera que todos
                 los niños y niñas puedan desarrollar habilidades y valores
                 necesarios para el siglo XXI.

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Row,
@@ -7,32 +7,69 @@ import {
   CardBody,
   CardTitle,
   Button,
-  Table,
 } from "reactstrap";
+import axios from "axios";
 
 // components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import CronogramasHeader from "components/Headers/CronogramasHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 
-//Archivo importado
-import pdfPrueba from "assets/docs/PdfPrueba.pdf";
-import pdfCalendarioFeriados from "assets/docs/CALENDARIO_FERIADOS.pdf";
-
 function CronogramasPage() {
+  const [files, setFiles] = useState([]);
+
   React.useEffect(() => {
     document.documentElement.classList.remove("nav-open");
     window.scrollTo(0, 0);
+    fetchFiles();
   }, []);
 
-  //Gestion de pdfs
-  const handleDownload = (pdfFile) => {
-    const link = document.createElement("a");
-    link.href = pdfFile;
-    link.download = pdfFile.split("/").pop();
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  // Función para obtener los archivos desde la API
+  const fetchFiles = async () => {
+    try {
+      const response = await axios.get(
+        "https://alinambiback.onrender.com/api/files"
+      );
+      setFiles(response.data);
+    } catch (error) {
+      console.error("Error al obtener archivos:", error);
+      alert("Error al obtener archivos.");
+    }
+  };
+
+  // Función genérica para descargar archivos por etiqueta
+  const downloadFileByTag = async (etiqueta) => {
+    try {
+      const file = files.find((f) => f.etiqueta === etiqueta);
+
+      if (!file) {
+        alert(
+          `Aún no hay archivos subidos para esta sección o no está disponible.`
+        );
+        return;
+      }
+
+      const response = await axios.get(
+        `https://alinambiback.onrender.com/api/download/${file._id}`,
+        {
+          responseType: "blob",
+        }
+      );
+
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", file.filename);
+      document.body.appendChild(link);
+      link.click();
+
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      alert(
+        `Aún no hay archivos subidos para esta sección o no está disponible".`
+      );
+    }
   };
 
   const services = [
@@ -67,7 +104,7 @@ function CronogramasPage() {
         className="section"
         style={{
           backgroundImage:
-            "url(" + require("assets/img/Alinambi/Wallpaper.jpg") + ")",
+            "url(" + require("assets/img/Alinambi/wallpaperTwo.jpeg") + ")",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
@@ -94,10 +131,10 @@ function CronogramasPage() {
             <h5
               className="text-center description justify-content-center description"
               style={{
-                fontSize: "22px",
+                fontSize: "24px",
                 color: "black",
                 marginTop: "30px",
-                fontWeight: "500",
+                fontWeight: "400",
               }}
             >
               El calendario sigue los protocolos y lineamientos establecidos por
@@ -253,29 +290,36 @@ function CronogramasPage() {
                       Período Académico Actual
                     </CardTitle>
                   </div>
-                  <p
-                    style={{
-                      fontSize: "1.1rem",
-                      color: "#666",
-                      lineHeight: "1.6",
-                    }}
-                  >
-                    Revisa el cronograma del período actual planificado para
-                    este período.
-                  </p>
-                  <Button
-                    className="btn-round btn-lg mt-3"
-                    color="info"
-                    style={{
-                      width: "100%",
-                      fontWeight: "600",
-                      textTransform: "uppercase",
-                      letterSpacing: "1px",
-                    }}
-                    onClick={() => handleDownload(pdfPrueba)}
-                  >
-                    Ver Cronograma del Período Actual
-                  </Button>
+                  <div style={{ marginTop: "50px" }}>
+                    <h5
+                      style={{
+                        fontSize: "1.1rem",
+                        color: "#666",
+                      }}
+                    >
+                      Revisa el cronograma del período actual planificado para
+                      este período.
+                    </h5>
+                  </div>
+                  <div style={{ marginTop: "60px" }}>
+                    <Button
+                      className="btn-round btn-lg mt-3"
+                      color="info"
+                      style={{
+                        width: "100%",
+                        fontWeight: "600",
+                        textTransform: "uppercase",
+                        letterSpacing: "1px",
+                      }}
+                      onClick={() =>
+                        downloadFileByTag(
+                          "Cronograma - Período Planificado Actual"
+                        )
+                      }
+                    >
+                      Ver Cronograma del Período Actual
+                    </Button>
+                  </div>
                 </CardBody>
               </Card>
             </Col>
@@ -310,10 +354,9 @@ function CronogramasPage() {
                     style={{ fontSize: "1.1rem", color: "#666" }}
                   >
                     {[
-                      "Vacaciones de Navidad: 23 dic - 7 ene",
-                      "Carnaval: 12-13 febrero",
-                      "Semana Santa: 25-29 marzo",
-                      "Vacaciones de Verano: 1 jul - 31 ago",
+                      "Vacaciones de Navidad: 24 de diciembre - 5,6,7 de enero",
+                      "Fiestas de Quito: 6 de diciembre",
+                      "Vacaciones de Verano: 1 de julio - 31 de agosto",
                     ].map((item, index) => (
                       <li key={index} className="mb-3 d-flex align-items-start">
                         <i
@@ -333,7 +376,9 @@ function CronogramasPage() {
                       textTransform: "uppercase",
                       letterSpacing: "1px",
                     }}
-                    onClick={() => handleDownload(pdfCalendarioFeriados)}
+                    onClick={() =>
+                      downloadFileByTag("Cronograma - Calendario de feriados")
+                    }
                   >
                     Descargar Calendario
                   </Button>

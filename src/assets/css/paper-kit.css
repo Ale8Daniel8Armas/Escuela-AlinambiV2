@@ -4303,7 +4303,8 @@ License - nucleoapp.com/license/
   padding-right: 10px;
 }
 .navbar .navbar-collapse:after {
-  background-color: rgb(70, 88, 117);
+  background-color: rgb(23, 23, 74);
+  color: #ffffff !important;
 }
 .navbar #navbarSupportedContent .nav-item {
   position: relative;
