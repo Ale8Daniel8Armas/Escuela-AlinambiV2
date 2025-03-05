@@ -144,34 +144,55 @@ function ExamplesNavbar() {
                   marginLeft: "-5px",
                 }}
               >
-                <span
-                  style={{
-                    fontSize: "22px",
-                    fontWeight: "800",
-                    color:
-                      navbarColor === "navbar-transparent"
-                        ? "#81AE3A"
-                        : "#FFFFFF",
-                    lineHeight: "1.1",
-                    fontFamily: "'Montserrat', sans-serif",
-                  }}
-                >
-                  Escuela de Educación
-                </span>
-                <span
-                  style={{
-                    fontSize: "22px",
-                    fontWeight: "800",
-                    color:
-                      navbarColor === "navbar-transparent"
-                        ? "#81AE3A"
-                        : "#FFFFFF",
-                    lineHeight: "1.1",
-                    fontFamily: "'Montserrat', sans-serif",
-                  }}
-                >
-                  Básica Fiscomisional
-                </span>
+                {isMobileScreen ? (
+                  // Texto para pantallas móviles
+                  <span
+                    style={{
+                      fontSize: "22px",
+                      fontWeight: "800",
+                      color:
+                        navbarColor === "navbar-transparent"
+                          ? "#81AE3A"
+                          : "#FFFFFF",
+                      lineHeight: "1.1",
+                      fontFamily: "'Montserrat', sans-serif",
+                    }}
+                  >
+                    EEBF
+                  </span>
+                ) : (
+                  // Texto para pantallas grandes
+                  <>
+                    <span
+                      style={{
+                        fontSize: "22px",
+                        fontWeight: "800",
+                        color:
+                          navbarColor === "navbar-transparent"
+                            ? "#81AE3A"
+                            : "#FFFFFF",
+                        lineHeight: "1.1",
+                        fontFamily: "'Montserrat', sans-serif",
+                      }}
+                    >
+                      Escuela de Educación
+                    </span>
+                    <span
+                      style={{
+                        fontSize: "22px",
+                        fontWeight: "800",
+                        color:
+                          navbarColor === "navbar-transparent"
+                            ? "#81AE3A"
+                            : "#FFFFFF",
+                        lineHeight: "1.1",
+                        fontFamily: "'Montserrat', sans-serif",
+                      }}
+                    >
+                      Básica Fiscomisional
+                    </span>
+                  </>
+                )}
                 <span
                   style={{
                     fontSize: "24px",
@@ -201,11 +222,40 @@ function ExamplesNavbar() {
                 border: "none",
                 background: "transparent",
                 padding: "5px",
+                position: "absolute",
+                right: "20px",
+                top: "25px",
               }}
             >
-              <span className="navbar-toggler-bar bar1" />
-              <span className="navbar-toggler-bar bar2" />
-              <span className="navbar-toggler-bar bar3" />
+              <span
+                className="navbar-toggler-bar bar1"
+                style={{
+                  marginBottom: "5px",
+                  backgroundColor:
+                    navbarColor === "navbar-transparent"
+                      ? "#81AE3A"
+                      : "#FFFFFF",
+                }}
+              />
+              <span
+                className="navbar-toggler-bar bar2"
+                style={{
+                  marginBottom: "5px",
+                  backgroundColor:
+                    navbarColor === "navbar-transparent"
+                      ? "#81AE3A"
+                      : "#FFFFFF",
+                }}
+              />
+              <span
+                className="navbar-toggler-bar bar3"
+                style={{
+                  backgroundColor:
+                    navbarColor === "navbar-transparent"
+                      ? "#81AE3A"
+                      : "#FFFFFF",
+                }}
+              />
             </Button>
 
             <Collapse
