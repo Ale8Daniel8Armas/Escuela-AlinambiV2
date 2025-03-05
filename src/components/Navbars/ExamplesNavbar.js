@@ -49,13 +49,13 @@ function ExamplesNavbar() {
   React.useEffect(() => {
     const updateNavbarColor = () => {
       if (
-        document.documentElement.scrollTop > 69 ||
-        document.body.scrollTop > 69
+        document.documentElement.scrollTop > 49 ||
+        document.body.scrollTop > 49
       ) {
         setNavbarColor("");
       } else if (
-        document.documentElement.scrollTop < 70 ||
-        document.body.scrollTop < 70
+        document.documentElement.scrollTop < 50 ||
+        document.body.scrollTop < 50
       ) {
         setNavbarColor("navbar-transparent");
       }
