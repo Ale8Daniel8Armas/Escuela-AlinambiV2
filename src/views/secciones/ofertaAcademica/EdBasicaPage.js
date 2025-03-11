@@ -417,7 +417,7 @@ function EdBasicaPage() {
                       >
                         Lunes a Viernes
                         <br />
-                        7:00 AM - 13:00 PM
+                        7:00 AM - 12:30 PM
                       </p>
                     </Col>
                     <Col md="6" className="text-center">

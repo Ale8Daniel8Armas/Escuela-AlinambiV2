@@ -497,7 +497,7 @@ const EnrollmentDashboard = () => {
                 style={{ padding: "12px 30px", fontWeight: "bold" }}
               >
                 <NavLink
-                  to="https://wa.me/+593994805054"
+                  to="https://wa.me/+593995421432"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

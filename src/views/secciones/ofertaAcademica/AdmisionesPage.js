@@ -302,7 +302,7 @@ function AdmisionesPage() {
                     <li>Certificados de promoción anteriores</li>
                     <li>Certificado médico</li>
                     <li>6 fotografías tamaño carnet</li>
-                    <li>Carnet de vacunación</li>
+                    <li>Copia de la planilla de luz</li>
                   </ul>
                   <Button
                     className="btn-lg btn-success d-block mx-auto mt-4"
@@ -343,11 +343,12 @@ function AdmisionesPage() {
                       </p>
                     </Col>
                     <Col md="6" className="text-center">
-                      <h5 className="text-white">Contacto</h5>
+                      <h5 className="text-white">Contactos</h5>
                       <p className="text-white">
-                        Teléfonos: (02)-234-4544 / 0994805054 / 0993968953
+                        Teléfonos: (02)-234-4544 / 0999782375 / 0995421432 /
+                        0993968953
                         <br />
-                        Correo: ueefalinambi@gmail.com
+                        Correo: 17h01731@gmail.com
                       </p>
                     </Col>
                   </Row>

@@ -11,9 +11,7 @@ import {
   NavLink,
   TabContent,
   TabPane,
-  Button,
 } from "reactstrap";
-import axios from "axios";
 
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import PlanCurricularHeader from "components/Headers/PlanCurricularHeader.js";
@@ -21,75 +19,17 @@ import DemoFooter from "components/Footers/DemoFooter.js";
 
 function PlanCurricularPage() {
   const [activeTab, setActiveTab] = React.useState("1");
-  const [files, setFiles] = useState([]);
 
   React.useEffect(() => {
     document.documentElement.classList.remove("nav-open");
     window.scrollTo(0, 0);
-    fetchFiles();
   }, []);
-
-  // Función para obtener los archivos desde la API
-  const fetchFiles = async () => {
-    try {
-      const response = await axios.get(
-        "https://alinambiback.onrender.com/api/files"
-      );
-      setFiles(response.data);
-    } catch (error) {
-      alert("Error al obtener archivos.");
-    }
-  };
-
-  // Función genérica para descargar archivos por etiqueta
-  const downloadFileByTag = async (etiqueta) => {
-    try {
-      const file = files.find((f) => f.etiqueta === etiqueta);
-
-      if (!file) {
-        alert(
-          `Aún no hay archivos subidos para esta sección o no está disponible.`
-        );
-        return;
-      }
-
-      const response = await axios.get(
-        `https://alinambiback.onrender.com/api/download/${file._id}`,
-        {
-          responseType: "blob",
-        }
-      );
-
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", file.filename);
-      document.body.appendChild(link);
-      link.click();
-
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      alert(
-        `Aún no hay archivos subidos para esta sección o no está disponible".`
-      );
-    }
-  };
 
   const toggle = (tab) => {
     if (activeTab !== tab) {
       setActiveTab(tab);
     }
   };
-
-  const bulletins = [
-    {
-      title: "Plan Curricular Aliñambi",
-      icon: "fa fa-book",
-      color: "#2e8b57",
-      etiqueta: "Plan Curricular - Plan Curricular Actual",
-    },
-  ];
 
   return (
     <>
@@ -235,7 +175,7 @@ function PlanCurricularPage() {
                         className="shadow-lg border-0"
                         style={{
                           background:
-                            "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)",
+                            "linear-gradient(135deg, rgb(17, 166, 203) 0%, #2575fc 100%)",
                           color: "white",
                           borderRadius: "12px",
                         }}
@@ -281,8 +221,7 @@ function PlanCurricularPage() {
                       <Card
                         className="shadow-lg border-0"
                         style={{
-                          background:
-                            "linear-gradient(135deg, #ff7eb3 0%, #ff758c 100%)",
+                          backgroundColor: "rgb(129,174,58)",
                           color: "white",
                           borderRadius: "12px",
                         }}
@@ -333,7 +272,7 @@ function PlanCurricularPage() {
                         className="shadow-lg border-0"
                         style={{
                           background:
-                            "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)",
+                            "linear-gradient(135deg, rgb(17, 166, 203) 0%, #2575fc 100%)",
                           color: "white",
                           borderRadius: "12px",
                         }}
@@ -378,8 +317,7 @@ function PlanCurricularPage() {
                       <Card
                         className="shadow-lg border-0"
                         style={{
-                          background:
-                            "linear-gradient(135deg, #ff7eb3 0%, #ff758c 100%)",
+                          backgroundColor: "rgb(129,174,58)",
                           color: "white",
                           borderRadius: "12px",
                         }}
@@ -429,7 +367,7 @@ function PlanCurricularPage() {
                         className="shadow-lg border-0"
                         style={{
                           background:
-                            "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)",
+                            "linear-gradient(135deg,rgb(17, 166, 203) 0%, #2575fc 100%)",
                           color: "white",
                           borderRadius: "12px",
                         }}
@@ -474,8 +412,7 @@ function PlanCurricularPage() {
                       <Card
                         className="shadow-lg border-0"
                         style={{
-                          background:
-                            "linear-gradient(135deg, #ff7eb3 0%, #ff758c 100%)",
+                          backgroundColor: "rgb(129,174,58)",
                           color: "white",
                           borderRadius: "12px",
                         }}
@@ -520,45 +457,6 @@ function PlanCurricularPage() {
                 </TabPane>
               </TabContent>
             </Col>
-          </Row>
-          <br />
-          <Row className="justify-content-center">
-            {bulletins.map((bulletin, index) => (
-              <Col md="3" className="mb-3" key={index}>
-                <Card className="h-100 shadow-sm hover-lift">
-                  <CardBody className="text-center">
-                    <div style={{ color: bulletin.color }} className="mb-3">
-                      <i className={`${bulletin.icon} fa-2x`}></i>
-                    </div>
-                    <CardTitle tag="h5" className="mb-3">
-                      {bulletin.title}
-                    </CardTitle>
-                    <Button
-                      color="primary"
-                      className="btn-round"
-                      outline
-                      style={{
-                        borderColor: bulletin.color,
-                        color: bulletin.color,
-                        transition: "all 0.3s ease",
-                      }}
-                      onMouseOver={(e) => {
-                        e.target.style.backgroundColor = bulletin.color;
-                        e.target.style.color = "white";
-                      }}
-                      onMouseOut={(e) => {
-                        e.target.style.backgroundColor = "transparent";
-                        e.target.style.color = bulletin.color;
-                      }}
-                      onClick={() => downloadFileByTag(bulletin.etiqueta)}
-                    >
-                      <i className="fa fa-download mr-1"></i>
-                      Descargar
-                    </Button>
-                  </CardBody>
-                </Card>
-              </Col>
-            ))}
           </Row>
         </Container>
       </div>

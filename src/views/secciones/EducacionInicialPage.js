@@ -180,7 +180,7 @@ function EducacionInicialPage() {
                           marginLeft: "25px",
                         }}
                       >
-                        <li>Jornada matutina: 7:00 AM - 12:30 PM</li>
+                        <li>Jornada matutina: 7:00 AM - 12:00 PM</li>
                         <li>Grupos reducidos</li>
                         <li>Docentes especializados</li>
                       </ul>
@@ -204,7 +204,7 @@ function EducacionInicialPage() {
                           marginLeft: "25px",
                         }}
                       >
-                        <li>Jornada matutina: 7:00 AM - 12:30 PM</li>
+                        <li>Jornada matutina: 7:00 AM - 12:00PM</li>
                         <li>Preparación para Primaria</li>
                         <li>Actividades de integración</li>
                       </ul>

@@ -81,8 +81,8 @@ function LandingPage() {
                     fontWeight: "500",
                   }}
                 >
-                  "Donde la solidaridad es un camino, la verdad se dice y se
-                  vive, la justicia se ama y la amistad nos une"
+                  "Donde es posible ser solidario, decir la verdad y vivirla,
+                  amar la justicia y ser amigos"
                 </p>
               </Col>
             </Row>
@@ -167,7 +167,7 @@ function LandingPage() {
               <Card className="d-flex flex-column h-100">
                 <CardImg
                   alt="Segundo Proyecto"
-                  src={require("assets/img/Alinambi/fotoAlinambiDos.jpg")}
+                  src={require("assets/img/Alinambi/canicas.jpg")}
                   top
                 />
                 <CardBody
@@ -179,14 +179,16 @@ function LandingPage() {
                     className="text-white text-center"
                     style={{ marginBottom: "10px" }}
                   >
-                    Proyecto Centro de Capacitación Técnica Productiva
+                    Semana Cultural Aliñambi
                   </CardTitle>
                   <CardText className="text-white">
-                    Este proyecto busca facilitar el ingreso de los niños a
-                    colegios técnicos mediante cursos de nivelación,
-                    proporcionándoles conocimientos básicos sobre la vida, el
-                    país y sus problemas sociales, económicos, políticos y
-                    culturales, con el objetivo de mejorar su nivel de vida.
+                    Semana de la casa de la cultura, organizada y elaborada por
+                    todo el plantel educativo, donde los estudiantes tienen la
+                    oportunidad de demostrar los conocimientos adquiridos,
+                    compartir su talento y participar en un ambiente enriquecido
+                    de amor y cultura. Este evento no solo refleja el orgullo y
+                    la identidad de nuestra institución, sino también el amor y
+                    respeto por el país que nos une.
                   </CardText>
                 </CardBody>
               </Card>

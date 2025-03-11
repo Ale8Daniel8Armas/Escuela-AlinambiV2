@@ -358,7 +358,7 @@ function ExamplesNavbar() {
                             : "none",
                         }}
                       >
-                        Mision - Vision
+                        Misión - Visión
                       </DropdownItem>
                       <DropdownItem
                         href="/historia-page"
@@ -607,7 +607,7 @@ function ExamplesNavbar() {
                             : "none",
                         }}
                       >
-                        Matricula
+                        Matrícula
                       </DropdownItem>
                       <DropdownItem
                         href="/cronogramas-page"

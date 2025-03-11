@@ -80,7 +80,7 @@ function EdInicialPage() {
                   }}
                   top
                 />
-                <CardBody style={{ backgroundColor: "rgb(30,159,219)" }}>
+                <CardBody style={{ backgroundColor: "rgb(23,23,74)" }}>
                   <CardTitle
                     tag="h3"
                     className="text-white text-center"
@@ -108,9 +108,7 @@ function EdInicialPage() {
                   src={require("assets/img/Alinambi/preparatoriaPicOne.jpg")}
                   top
                 />
-                <CardBody
-                  style={{ backgroundColor: "rgba(20, 114, 83, 0.93)" }}
-                >
+                <CardBody style={{ backgroundColor: "rgb(129,174,58)" }}>
                   <CardTitle
                     tag="h3"
                     className="text-white text-center"
