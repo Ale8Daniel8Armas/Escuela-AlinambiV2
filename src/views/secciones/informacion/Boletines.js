@@ -85,19 +85,19 @@ const BoletinesContenido = () => {
     },
     {
       title: "Instructivo para Matrículas",
-      icon: "fa fa-graduation-cap",
+      icon: "fa fa-folder-open",
       color: "#2e8b57",
       etiqueta: "Boletín - Instructivo para Matrículas",
     },
     {
       title: "Resolución Ministerial de Costos",
-      icon: "fa fa-heartbeat",
+      icon: "fa fa-money-check-dollar",
       color: "#2e8b57",
       etiqueta: "Boletín - Resolución Ministerial de Costos",
     },
     {
       title: "Reglamento Institucional",
-      icon: "fa fa-users",
+      icon: "fa fa-building-columns",
       color: "#2e8b57",
       etiqueta: "Boletín - Reglamento Institucional",
     },

@@ -51,11 +51,12 @@ const ContactAgenda = () => {
         </h2>
         <p className="fst-italic">¡Estaremos gustosos de atenderte!</p>
         <p>
-          <strong>Teléfonos:</strong> (02) 234 - 4544 / 0994805054 / 0993968953
+          <strong>Teléfonos:</strong> (02) 234 - 4544 / 0999782375 / 0995421432
+          /0993968953
         </p>
         <p>
-          <strong>Dirección:</strong> Conocoto, calle Panzaleo - E8-213, cerca
-          del sector Fajardo
+          <strong>Dirección:</strong> Conocoto, Barrio San Francisco de Tena,
+          Calle Panzaleo - E8-213, cerca del sector Fajardo
         </p>
 
         <div className="d-flex justify-content-center gap-3 fs-2 mt-3">
@@ -74,7 +75,7 @@ const ContactAgenda = () => {
             <FaInstagram className="text-danger cursor-pointer" />
           </a>
           <a
-            href="https://wa.me/+593994805054"
+            href="https://wa.me/+593995421432"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -92,7 +93,7 @@ const ContactAgenda = () => {
           <div className="mt-3">
             {[
               "Secretaría General (02) 234 - 4544",
-              "Administración +593 994805054 ",
+              "Administración +593 995421432 ",
             ].map((item) => (
               <div key={item} className="border-bottom p-2">
                 <Button

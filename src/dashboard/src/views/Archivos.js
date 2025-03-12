@@ -469,6 +469,20 @@ function FileUploadForm() {
                   </DropdownItem>
                   <DropdownItem
                     onClick={() =>
+                      setSelectedOption("Boletín - Lista de Útiles Inicial")
+                    }
+                  >
+                    Boletín - Lista de Útiles Ed. Inicial
+                  </DropdownItem>
+                  <DropdownItem
+                    onClick={() =>
+                      setSelectedOption("Boletín - Lista de Útiles Básica")
+                    }
+                  >
+                    Boletín - Lista de Útiles Ed. Básica
+                  </DropdownItem>
+                  <DropdownItem
+                    onClick={() =>
                       setSelectedOption(
                         "Horario de Clases - Inicial y Preparatoria"
                       )
