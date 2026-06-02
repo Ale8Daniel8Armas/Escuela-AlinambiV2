@@ -4,6 +4,7 @@ import PanelList from "dashboard/src/views/Panel.js";
 import UserPage from "dashboard/src/views/Usuarios.js";
 import MisionVisionPage from "dashboard/src/views/MisionVision.js";
 import MatriculaPage from "dashboard/src/views/Matricula.js";
+import SolicitudIngresoAdmin from "dashboard/src/views/SolicitudIngreso.js";
 
 var routes = [
   {
@@ -46,6 +47,13 @@ var routes = [
     name: "Matrícula",
     icon: "nc-icon nc-briefcase-24",
     component: MatriculaPage,
+    layout: "/admin",
+  },
+  {
+    path: "/solicitudes-ingreso",
+    name: "Solicitudes de Ingreso",
+    icon: "nc-icon nc-single-02",
+    component: SolicitudIngresoAdmin,
     layout: "/admin",
   },
 ];

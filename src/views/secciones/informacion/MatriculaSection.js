@@ -472,6 +472,54 @@ const EnrollmentDashboard = () => {
         </Col>
       </Row>
 
+      {/* Sección de Solicitud de Ingreso en línea */}
+      <Row className="mt-5">
+        <Col md="12">
+          <Card
+            className="shadow-lg rounded-lg"
+            style={{
+              background: "linear-gradient(135deg, #17174A 0%, #1a6e37 100%)",
+              border: "none",
+            }}
+          >
+            <CardBody className="text-center py-5">
+              <i
+                className="nc-icon nc-single-02 mb-3"
+                style={{ fontSize: "3rem", color: "#9CC066" }}
+              ></i>
+              <h3
+                className="font-weight-bold mb-3"
+                style={{ fontSize: "2rem", color: "#ffffff" }}
+              >
+                ¿Listo para inscribir a tu hijo/a?
+              </h3>
+              <p
+                className="mb-4"
+                style={{ fontSize: "1.1rem", color: "#d0e8ff" }}
+              >
+                Completa el formulario de solicitud de ingreso en línea.
+                El proceso es rápido y recibirás un código de seguimiento.
+              </p>
+              <Button
+                className="btn-round btn-lg"
+                style={{
+                  backgroundColor: "#9CC066",
+                  border: "none",
+                  padding: "14px 40px",
+                  fontWeight: "bold",
+                  fontSize: "1rem",
+                  color: "#fff",
+                }}
+                href="/solicitud-ingreso"
+              >
+                <i className="nc-icon nc-paper mr-2" />
+                Solicitar Ingreso en Línea
+              </Button>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+
       {/* Help Section */}
       <Row className="mt-5 mb-5">
         <Col md="12">
