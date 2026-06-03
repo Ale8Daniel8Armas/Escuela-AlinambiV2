@@ -33,6 +33,7 @@ import BoletinesPage from "views/secciones/informacion/BoletinesPage.js";
 import ServiciosPage from "views/secciones/ServiciosPage.js";
 import ContactosPage from "views/secciones/ContactosPage.js";
 import SolicitudIngresoPage from "views/secciones/admisiones/SolicitudIngresoPage.js";
+import FormularioMatriculaPage from "views/secciones/admisiones/FormularioMatriculaPage.js";
 
 // Dashboard
 import AdminLayout from "./dashboard/src/layouts/Admin.js";
@@ -63,6 +64,7 @@ root.render(
       <Route path="/actividades-page" element={<ActividadesPage />} />
       <Route path="/boletines-page" element={<BoletinesPage />} />
       <Route path="/solicitud-ingreso" element={<SolicitudIngresoPage />} />
+      <Route path="/formulario-matricula" element={<FormularioMatriculaPage />} />
       {/* Rutas del dashboard */}
       <Route path="/admin/*" element={<AdminLayout routes={routes} />} />
       {/* Ruta por defecto */}
