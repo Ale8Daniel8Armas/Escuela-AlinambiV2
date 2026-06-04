@@ -95,7 +95,12 @@ function FormularioMatriculaPage() {
 
   // ── Helpers de validación ─────────────────────────────────────────────────
   const esEmailValido = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim());
-  const esCedulaValida = (c) => /^\d{10}$/.test(c.trim());
+  const esCedulaValida = (c) => {
+    const v = c.trim();
+    if (!/^\d{10}$/.test(v)) return false;
+    const provincia = parseInt(v.substring(0, 2), 10);
+    return provincia >= 1 && provincia <= 24;
+  };
   const esCelularValido = (c) => /^09\d{8}$/.test(c.trim());
   const esAnoLectivoValido = (a) => /^\d{4}-\d{4}$/.test(a.trim());
   const edadRazonable = (fechaStr) => {
@@ -104,7 +109,7 @@ function FormularioMatriculaPage() {
     const nac = new Date(fechaStr);
     if (nac >= hoy) return false;
     const edad = hoy.getFullYear() - nac.getFullYear();
-    return edad >= 2 && edad <= 20;
+    return edad >= 3 && edad <= 10;
   };
 
   // Verificar código — usa endpoint dedicado, no descarga todos los registros
@@ -159,10 +164,10 @@ function FormularioMatriculaPage() {
       if (!form.apellidos.trim()) return "Los apellidos son requeridos.";
       if (!form.cedula.trim()) return "La cédula del estudiante es requerida.";
       if (!esCedulaValida(form.cedula))
-        return "La cédula del estudiante debe tener exactamente 10 dígitos numéricos.";
+        return "La cédula del estudiante debe tener 10 dígitos y los 2 primeros deben ser un código provincial válido (01–24).";
       if (!form.fechaNacimiento) return "La fecha de nacimiento es requerida.";
       if (!edadRazonable(form.fechaNacimiento))
-        return "Ingresa una fecha de nacimiento válida (edad entre 2 y 20 años).";
+        return "Ingresa una fecha de nacimiento válida (la edad debe estar entre 3 y 10 años).";
       if (!form.genero) return "El género es requerido.";
       if (!form.nivelSolicitado) return "El nivel es requerido.";
       if (!form.anoLectivo.trim()) return "El año lectivo es requerido.";
@@ -177,7 +182,7 @@ function FormularioMatriculaPage() {
       if (!form.cedulaRepresentante.trim())
         return "La cédula del representante es requerida.";
       if (!esCedulaValida(form.cedulaRepresentante))
-        return "La cédula del representante debe tener exactamente 10 dígitos numéricos.";
+        return "La cédula del representante debe tener 10 dígitos y los 2 primeros deben ser un código provincial válido (01–24).";
       if (!form.celularRepresentante.trim())
         return "El celular del representante es requerido.";
       if (!esCelularValido(form.celularRepresentante))

@@ -112,7 +112,12 @@ function SolicitudIngresoPage() {
 
   // ── Helpers de validación ─────────────────────────────────────────────────
   const esEmailValido = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim());
-  const esCedulaValida = (c) => /^\d{10}$/.test(c.trim());
+  const esCedulaValida = (c) => {
+    const v = c.trim();
+    if (!/^\d{10}$/.test(v)) return false;
+    const provincia = parseInt(v.substring(0, 2), 10);
+    return provincia >= 1 && provincia <= 24;
+  };
   const esCelularValido = (c) => /^09\d{8}$/.test(c.trim());
   const esTelefonoValido = (t) => /^\d{7,10}$/.test(t.trim());
   const esAnoLectivoValido = (a) => /^\d{4}-\d{4}$/.test(a.trim());
@@ -121,9 +126,9 @@ function SolicitudIngresoPage() {
     if (!fechaStr) return false;
     const hoy = new Date();
     const nacimiento = new Date(fechaStr);
-    if (nacimiento >= hoy) return false;       // fecha futura
+    if (nacimiento >= hoy) return false;
     const edad = hoy.getFullYear() - nacimiento.getFullYear();
-    return edad >= 2 && edad <= 20;            // rango escolar válido
+    return edad >= 3 && edad <= 10;
   };
 
   const validarPaso = () => {
@@ -132,10 +137,10 @@ function SolicitudIngresoPage() {
       if (!form.apellidos.trim()) return "Los apellidos son requeridos.";
       if (!form.fechaNacimiento) return "La fecha de nacimiento es requerida.";
       if (!edadRazonable(form.fechaNacimiento))
-        return "Ingresa una fecha de nacimiento válida (la edad debe estar entre 2 y 20 años).";
+        return "Ingresa una fecha de nacimiento válida (la edad debe estar entre 3 y 10 años).";
       if (!form.genero) return "El género es requerido.";
       if (form.cedula && !esCedulaValida(form.cedula))
-        return "La cédula del estudiante debe tener exactamente 10 dígitos numéricos.";
+        return "La cédula del estudiante debe tener 10 dígitos y los 2 primeros deben ser un código provincial válido (01–24).";
       if (form.tieneDiscapacidad && !form.tipoDiscapacidad.trim())
         return "Indica el tipo de discapacidad del estudiante.";
     }
@@ -153,7 +158,7 @@ function SolicitudIngresoPage() {
       if (!form.cedulaRepresentante.trim())
         return "La cédula del representante es requerida.";
       if (!esCedulaValida(form.cedulaRepresentante))
-        return "La cédula del representante debe tener exactamente 10 dígitos numéricos.";
+        return "La cédula del representante debe tener 10 dígitos y los 2 primeros deben ser un código provincial válido (01–24).";
       if (!form.celularRepresentante.trim())
         return "El celular del representante es requerido.";
       if (!esCelularValido(form.celularRepresentante))
@@ -242,8 +247,7 @@ function SolicitudIngresoPage() {
                   Solicitud de Ingreso
                 </h2>
                 <p style={{ color: "#555", fontSize: "1rem" }}>
-                  Escuela de Educación Básica Fiscomisional Aliñambi — Año
-                  Lectivo 2024-2025
+                  Escuela de Educación Básica Fiscomisional Aliñambi
                 </p>
               </div>
 
