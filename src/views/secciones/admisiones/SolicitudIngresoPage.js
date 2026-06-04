@@ -110,16 +110,40 @@ function SolicitudIngresoPage() {
     setError("");
   };
 
+  // ── Helpers de validación ─────────────────────────────────────────────────
+  const esEmailValido = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim());
+  const esCedulaValida = (c) => /^\d{10}$/.test(c.trim());
+  const esCelularValido = (c) => /^09\d{8}$/.test(c.trim());
+  const esTelefonoValido = (t) => /^\d{7,10}$/.test(t.trim());
+  const esAnoLectivoValido = (a) => /^\d{4}-\d{4}$/.test(a.trim());
+
+  const edadRazonable = (fechaStr) => {
+    if (!fechaStr) return false;
+    const hoy = new Date();
+    const nacimiento = new Date(fechaStr);
+    if (nacimiento >= hoy) return false;       // fecha futura
+    const edad = hoy.getFullYear() - nacimiento.getFullYear();
+    return edad >= 2 && edad <= 20;            // rango escolar válido
+  };
+
   const validarPaso = () => {
     if (paso === 0) {
       if (!form.nombres.trim()) return "El nombre del estudiante es requerido.";
       if (!form.apellidos.trim()) return "Los apellidos son requeridos.";
       if (!form.fechaNacimiento) return "La fecha de nacimiento es requerida.";
+      if (!edadRazonable(form.fechaNacimiento))
+        return "Ingresa una fecha de nacimiento válida (la edad debe estar entre 2 y 20 años).";
       if (!form.genero) return "El género es requerido.";
+      if (form.cedula && !esCedulaValida(form.cedula))
+        return "La cédula del estudiante debe tener exactamente 10 dígitos numéricos.";
+      if (form.tieneDiscapacidad && !form.tipoDiscapacidad.trim())
+        return "Indica el tipo de discapacidad del estudiante.";
     }
     if (paso === 1) {
       if (!form.nivelSolicitado) return "Selecciona el nivel solicitado.";
       if (!form.anoLectivo.trim()) return "El año lectivo es requerido.";
+      if (!esAnoLectivoValido(form.anoLectivo))
+        return "El año lectivo debe tener el formato correcto (ej: 2025-2026).";
     }
     if (paso === 2) {
       if (!form.nombresRepresentante.trim())
@@ -128,10 +152,18 @@ function SolicitudIngresoPage() {
         return "Los apellidos del representante son requeridos.";
       if (!form.cedulaRepresentante.trim())
         return "La cédula del representante es requerida.";
+      if (!esCedulaValida(form.cedulaRepresentante))
+        return "La cédula del representante debe tener exactamente 10 dígitos numéricos.";
       if (!form.celularRepresentante.trim())
         return "El celular del representante es requerido.";
+      if (!esCelularValido(form.celularRepresentante))
+        return "El celular debe iniciar en 09 y tener 10 dígitos (ej: 0987654321).";
+      if (form.telefonoRepresentante && !esTelefonoValido(form.telefonoRepresentante))
+        return "El teléfono convencional debe tener entre 7 y 10 dígitos numéricos.";
       if (!form.emailRepresentante.trim())
-        return "El email del representante es requerido.";
+        return "El correo electrónico del representante es requerido.";
+      if (!esEmailValido(form.emailRepresentante))
+        return "Ingresa un correo electrónico válido (ej: nombre@dominio.com).";
     }
     if (paso === 3) {
       if (!form.nombreEmergencia.trim())
@@ -140,6 +172,8 @@ function SolicitudIngresoPage() {
         return "El parentesco del contacto de emergencia es requerido.";
       if (!form.telefonoEmergencia.trim())
         return "El teléfono de emergencia es requerido.";
+      if (!esTelefonoValido(form.telefonoEmergencia))
+        return "El teléfono de emergencia debe tener entre 7 y 10 dígitos numéricos.";
     }
     return "";
   };
@@ -159,6 +193,9 @@ function SolicitudIngresoPage() {
   };
 
   const handleSubmit = async () => {
+    // Re-validar el último paso antes de enviar
+    const err = validarPaso();
+    if (err) { setError(err); return; }
     setEnviando(true);
     setError("");
     try {

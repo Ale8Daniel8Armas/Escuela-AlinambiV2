@@ -78,7 +78,6 @@ function FormularioMatriculaPage() {
   const [enviando, setEnviando] = useState(false);
   const [verificando, setVerificando] = useState(false);
   const [solicitudVerificada, setSolicitudVerificada] = useState(null);
-  const [codigoConfirmacion, setCodigoConfirmacion] = useState("");
 
   React.useEffect(() => {
     document.documentElement.classList.remove("nav-open");
@@ -94,34 +93,38 @@ function FormularioMatriculaPage() {
     setError("");
   };
 
-  // Verificar código de solicitud aprobada
+  // ── Helpers de validación ─────────────────────────────────────────────────
+  const esEmailValido = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim());
+  const esCedulaValida = (c) => /^\d{10}$/.test(c.trim());
+  const esCelularValido = (c) => /^09\d{8}$/.test(c.trim());
+  const esAnoLectivoValido = (a) => /^\d{4}-\d{4}$/.test(a.trim());
+  const edadRazonable = (fechaStr) => {
+    if (!fechaStr) return false;
+    const hoy = new Date();
+    const nac = new Date(fechaStr);
+    if (nac >= hoy) return false;
+    const edad = hoy.getFullYear() - nac.getFullYear();
+    return edad >= 2 && edad <= 20;
+  };
+
+  // Verificar código — usa endpoint dedicado, no descarga todos los registros
   const verificarCodigo = async () => {
-    if (!form.codigoSolicitud.trim()) {
+    const codigo = form.codigoSolicitud.trim().toUpperCase();
+    if (!codigo) {
       setError("Ingresa tu código de solicitud.");
       return;
     }
+    if (!/^SOL-\d{4}-\d{4}$/.test(codigo))
+      return setError("El formato del código no es válido (ej: SOL-2025-0001).");
     setVerificando(true);
     setError("");
     try {
-      const res = await axios.get(`${API}/solicitud-ingreso`, {
-        params: { estado: "aceptado" },
-      });
-      const encontrada = res.data.find(
-        (s) =>
-          s.codigoSolicitud.toLowerCase() ===
-          form.codigoSolicitud.trim().toLowerCase()
-      );
-      if (!encontrada) {
-        setError(
-          "Código no encontrado o la solicitud no está en estado Aprobado. " +
-            "Verifica el código recibido en tu correo."
-        );
-        return;
-      }
+      const res = await axios.get(`${API}/solicitud-ingreso/verificar/${codigo}`);
+      const encontrada = res.data;
       setSolicitudVerificada(encontrada);
-      // Pre-llenar con datos ya existentes
       setForm((prev) => ({
         ...prev,
+        codigoSolicitud: codigo,
         nombres: encontrada.nombres || "",
         apellidos: encontrada.apellidos || "",
         cedula: encontrada.cedula || "",
@@ -139,8 +142,12 @@ function FormularioMatriculaPage() {
       }));
       setPaso(1);
       window.scrollTo(0, 0);
-    } catch {
-      setError("Error al verificar el código. Intenta de nuevo.");
+    } catch (e) {
+      setError(
+        e.response?.status === 404
+          ? "Código no encontrado o la solicitud no está en estado Aprobado. Verifica el código recibido en tu correo."
+          : "Error al verificar el código. Intenta de nuevo."
+      );
     } finally {
       setVerificando(false);
     }
@@ -148,23 +155,39 @@ function FormularioMatriculaPage() {
 
   const validarPaso = () => {
     if (paso === 1) {
-      if (!form.nombres.trim()) return "El nombre es requerido.";
+      if (!form.nombres.trim()) return "El nombre del estudiante es requerido.";
       if (!form.apellidos.trim()) return "Los apellidos son requeridos.";
       if (!form.cedula.trim()) return "La cédula del estudiante es requerida.";
+      if (!esCedulaValida(form.cedula))
+        return "La cédula del estudiante debe tener exactamente 10 dígitos numéricos.";
       if (!form.fechaNacimiento) return "La fecha de nacimiento es requerida.";
+      if (!edadRazonable(form.fechaNacimiento))
+        return "Ingresa una fecha de nacimiento válida (edad entre 2 y 20 años).";
+      if (!form.genero) return "El género es requerido.";
       if (!form.nivelSolicitado) return "El nivel es requerido.";
       if (!form.anoLectivo.trim()) return "El año lectivo es requerido.";
+      if (!esAnoLectivoValido(form.anoLectivo))
+        return "El año lectivo debe tener el formato correcto (ej: 2025-2026).";
     }
     if (paso === 2) {
       if (!form.nombresRepresentante.trim())
         return "El nombre del representante es requerido.";
+      if (!form.apellidosRepresentante.trim())
+        return "Los apellidos del representante son requeridos.";
       if (!form.cedulaRepresentante.trim())
         return "La cédula del representante es requerida.";
+      if (!esCedulaValida(form.cedulaRepresentante))
+        return "La cédula del representante debe tener exactamente 10 dígitos numéricos.";
       if (!form.celularRepresentante.trim())
         return "El celular del representante es requerido.";
+      if (!esCelularValido(form.celularRepresentante))
+        return "El celular debe iniciar en 09 y tener 10 dígitos (ej: 0987654321).";
       if (!form.emailRepresentante.trim())
-        return "El email del representante es requerido.";
-      if (!form.direccion.trim()) return "La dirección domiciliaria es requerida.";
+        return "El correo electrónico del representante es requerido.";
+      if (!esEmailValido(form.emailRepresentante))
+        return "Ingresa un correo electrónico válido (ej: nombre@dominio.com).";
+      if (!form.direccion.trim())
+        return "La dirección domiciliaria es requerida.";
     }
     if (paso === 3) {
       const docsObligatorios = [
@@ -174,8 +197,7 @@ function FormularioMatriculaPage() {
         "docVacunas",
         "docComprobantePago",
       ];
-      const faltantes = docsObligatorios.filter((d) => !form[d]);
-      if (faltantes.length > 0)
+      if (docsObligatorios.some((d) => !form[d]))
         return "Debes confirmar que tienes todos los documentos obligatorios marcados con *.";
     }
     if (paso === 4) {
@@ -219,9 +241,6 @@ function FormularioMatriculaPage() {
         esFormularioMatricula: true,
         referenciaCodigoSolicitud: form.codigoSolicitud,
       });
-      setCodigoConfirmacion(
-        `MAT-${new Date().getFullYear()}-${String(Math.floor(Math.random() * 9000) + 1000)}`
-      );
       setPaso(5);
       window.scrollTo(0, 0);
     } catch (e) {
