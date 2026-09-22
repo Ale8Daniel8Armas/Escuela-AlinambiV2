@@ -1,137 +1,139 @@
-````markdown
-# Paper Kit React - Kit de UI Moderno para React
+# 🏫 Escuela-AlinambiV2
 
-![version](https://img.shields.io/badge/version-1.3.2-blue.svg)
-[![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/paper-kit-react.svg?maxAge=2592000)](https://github.com/creativetimofficial/paper-kit-react/issues?q=is%3Aopen+is%3Aissue)
-[![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/paper-kit-react.svg?maxAge=2592000)](https://github.com/creativetimofficial/paper-kit-react/issues?q=is%3Aissue+is%3Aclosed)
-[![Licencia: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
+![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
+![React](https://img.shields.io/badge/React-18.2.0-61DAFB?logo=react&logoColor=white)
+![Reactstrap](https://img.shields.io/badge/Reactstrap-9.2.3-563D7C?logo=bootstrap&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-4.6.2-7952B3?logo=bootstrap&logoColor=white)
+![Sass](https://img.shields.io/badge/Sass-1.62.1-CC6699?logo=sass&logoColor=white)
+![Genezio](https://img.shields.io/badge/Deploy-Genezio-orange?logo=vercel&logoColor=white)
+[![Licencia: MIT x ESPE](https://img.shields.io/badge/license-MIT%20x%20ESPE-brightgreen.svg)](LICENSE.md)
 
-![Paper Kit React](https://raw.githubusercontent.com/creativetimofficial/public-assets/master/paper-kit-react/opt_pk_react_thumbnail.jpg)
+**Escuela-AlinambiV2** es una plataforma web moderna e interactiva desarrollada para la gestión y presentación de la Escuela Alinambi. El proyecto está construido utilizando **React**, **Bootstrap 4** y **Reactstrap**, tomando como base la plantilla **Paper Kit React** de Creative Tim. Presenta un diseño moderno, colores suaves, tipografía elegante y una interfaz amigable.
 
-**Paper Kit React** es un kit de interfaz de usuario gratuito y de código abierto construido con **React**, **Bootstrap 4** y **Reactstrap**. Cuenta con un diseño moderno, colores suaves, tipografía elegante y diseños cuidadosamente pensados, lo que lo hace perfecto para crear aplicaciones web elegantes y responsivas.
+## 🚀 Tecnologías y Plantillas Utilizadas
+
+Este proyecto se apoya fuertemente en herramientas modernas de desarrollo frontend:
+
+- **Frontend Core**: [React (v18)](https://reactjs.org/)
+- **UI Framework**: [Bootstrap 4](https://getbootstrap.com/) integrado con [Reactstrap](https://reactstrap.github.io/)
+- **Plantilla Base**: [Paper Kit React](https://www.creative-tim.com/product/paper-kit-react) por Creative Tim (adaptada y mejorada).
+- **Estilos**: [Sass (SCSS)](https://sass-lang.com/) para una arquitectura CSS modular.
+- **Gráficos y Mapas**: Integración de [Chart.js](https://www.chartjs.org/) y [Leaflet](https://leafletjs.com/).
+- **Despliegue (Deploy)**: [Genezio](https://genezio.com/) para alojamiento y CI/CD ágil.
+- **Iconos**: [FontAwesome](https://fontawesome.com/) y [Lucide React](https://lucide.dev/).
 
 ---
 
-## Características Principales
+## 🏗️ Arquitectura del Proyecto
 
-- **Construido con React**: Aprovecha el poder de React para crear componentes dinámicos y reutilizables.
-- **Integración con Bootstrap 4**: Totalmente compatible con Bootstrap 4, asegurando un diseño responsivo y mobile-first.
-- **Componentes de Reactstrap**: Utiliza Reactstrap para integrar fácilmente componentes de Bootstrap en React.
-- **Estilos Personalizables**: Incluye archivos SCSS para personalizar colores, tipografía y más.
-- **Páginas Pre-diseñadas**: Viene con páginas listas para usar, como Landing, Registro y Perfil.
-- **Soporte para React Hooks**: Totalmente compatible con React Hooks para un desarrollo moderno.
+El proyecto sigue una arquitectura **Basada en Componentes (Component-Based Architecture)** típica de aplicaciones React (Single Page Application - SPA). 
+La separación de responsabilidades se maneja de la siguiente manera:
+
+- **Componentes de UI Reutilizables**: Encapsulados en `/components`, son independientes y pueden ser usados a través de toda la aplicación (ej. botones, navbars, footers).
+- **Vistas (Views/Pages)**: En la carpeta `/views`, representan las páginas principales y manejan el estado a nivel de página (ej. Landing Page, Perfil, Dashboard).
+- **Estilos Modulares**: Manejo centralizado de estilos con SCSS en `/assets/scss`, lo que permite variables globales para temas y componentes específicos.
+- **Rutas**: Gestionadas mediante `react-router-dom` para una navegación rápida y fluida sin recargar la página.
+
+### Estructura de Carpetas
+
+```text
+Escuela-AlinambiV2/
+├── .env                     # Variables de entorno locales
+├── genezio.yaml             # Configuración de despliegue en Genezio
+├── package.json             # Gestión de dependencias y scripts
+├── public/                  # Archivos estáticos públicos (index.html, favicons)
+└── src/
+    ├── assets/              # Archivos estáticos, SCSS (paper-kit), fuentes e imágenes
+    ├── components/          # Componentes de UI reutilizables (Headers, Navbars, etc.)
+    ├── dashboard/           # Componentes y vistas específicas del panel de administración
+    ├── views/               # Páginas completas (Landing, Index, Login, Registro, etc.)
+    └── index.js             # Punto de entrada de la aplicación y configuración de rutas
+```
 
 ---
 
-## Comenzar Rápidamente
+## ⚙️ Descarga e Instalación
 
-Sigue estos pasos para comenzar con Paper Kit React:
+### Prerrequisitos
 
-1. **Clonar el Repositorio**:
+Para ejecutar este proyecto de forma local, necesitas tener instalado:
+- **Node.js** (v16 o superior recomendado)
+- **npm** (v8 o superior) o **yarn**
+- **Git** para clonar el repositorio.
+
+### Paso a paso
+
+1. **Clonar el repositorio**:
    ```bash
-   git clone https://github.com/creativetimofficial/paper-kit-react.git
-   cd paper-kit-react
+   git clone https://github.com/tu-usuario/Escuela-AlinambiV2.git
+   cd Escuela-AlinambiV2
    ```
-````
 
-2. **Instalar Dependencias**:
-
+2. **Instalar las dependencias**:
+   Se recomienda usar la bandera `--legacy-peer-deps` debido a la mezcla de versiones en algunas librerías heredadas de la plantilla original:
    ```bash
-   npm install
+   npm install --legacy-peer-deps
    ```
 
-3. **Ejecutar el Servidor de Desarrollo**:
-
+3. **Ejecutar el servidor de desarrollo local**:
    ```bash
    npm start
    ```
+   *La aplicación se abrirá automáticamente en `http://localhost:3000`.*
 
 4. **Compilar para Producción**:
-
    ```bash
    npm run build
    ```
-
-5. **Personalizar Estilos**:
-   - Modifica los archivos SCSS ubicados en `src/assets/scss/paper-kit/` para personalizar el diseño.
+   *Esto generará la carpeta `build/` lista para ser desplegada.*
 
 ---
 
-## Estructura del Proyecto
+## 📦 Dependencias Principales
 
-```
-paper-kit-react
-├── public/                  # Archivos estáticos
-├── src/
-│   ├── assets/              # Imágenes, fuentes y archivos SCSS
-│   ├── components/          # Componentes reutilizables de React
-│   ├── views/               # Componentes de páginas
-│   ├── index.js             # Punto de entrada
-├── package.json             # Dependencias y scripts del proyecto
-├── README.md                # Documentación del proyecto
-```
+El proyecto depende de los siguientes paquetes principales (para la lista completa, revisa el archivo `package.json`):
 
----
-
-## Dependencias Principales
-
-Paper Kit React utiliza las siguientes dependencias clave:
-
-- **React**: Una biblioteca de JavaScript para construir interfaces de usuario.
-- **Reactstrap**: Componentes de Bootstrap 4 construidos con React.
-- **Bootstrap**: Un framework CSS popular para diseño responsivo.
-- **Sass**: Un preprocesador CSS para escribir estilos modulares y mantenibles.
-- **Axios**: Un cliente HTTP basado en promesas para realizar solicitudes API.
-- **Chart.js**: Una biblioteca para crear gráficos interactivos.
-- **React Router DOM**: Para manejar el enrutamiento en aplicaciones React.
-
-Para ver la lista completa de dependencias, revisa el archivo `package.json`.
+- **`react` & `react-dom`**: Renderizado y manejo de la interfaz.
+- **`reactstrap` & `bootstrap`**: Grid system y componentes de interfaz pre-diseñados.
+- **`react-router-dom`**: Manejo de rutas y navegación de la SPA.
+- **`axios`**: Para realizar peticiones HTTP a servidores externos o APIs.
+- **`jwt-decode`**: Decodificación de tokens JSON Web Tokens (JWT) para validación de sesiones.
+- **`chart.js` & `react-chartjs-2`**: Para visualización de datos estadísticos en el dashboard.
+- **`leaflet` & `react-leaflet`**: Para integración de mapas interactivos.
+- **`sass`**: Para compilar los estilos de Paper Kit React.
 
 ---
 
-## Compatibilidad con Navegadores
+## 🔒 Manejo de Credenciales, Seguridad y Configuración
 
-Paper Kit React está diseñado para funcionar perfectamente en las últimas versiones de:
+### 1. Variables de Entorno (`.env`)
+El proyecto usa variables de entorno para proteger configuraciones. Por defecto:
+- `GENERATE_SOURCEMAP=false` está configurado para evitar la exposición del código fuente en entornos de producción.
+- Si se agregan integraciones de API en el futuro (ej. URL del backend), deben agregarse al archivo `.env` utilizando el prefijo `REACT_APP_` (ej. `REACT_APP_API_URL`). **NUNCA** debes subir archivos `.env` con contraseñas reales al repositorio de GitHub (están excluidos en el `.gitignore`).
 
-- **Chrome**
-- **Firefox**
-- **Edge**
-- **Safari**
-- **Opera**
+### 2. Autenticación y JWT
+Se cuenta con la dependencia `jwt-decode`. La arquitectura de seguridad para usuarios del dashboard asume un modelo basado en tokens:
+- **Login**: Al autenticarse con el servidor backend (vía `axios`), el frontend recibe un token JWT.
+- **Almacenamiento**: El token suele guardarse en el `localStorage` o `sessionStorage`.
+- **Validación**: Con `jwt-decode` se extrae la información del usuario (roles, caducidad) sin necesidad de consultar repetidamente al servidor. 
 
----
-
-## Documentación
-
-Para ver la documentación detallada y ejemplos, visita la [documentación oficial](https://demos.creative-tim.com/paper-kit-react/#/documentation/introduction).
-
----
-
-## Licencia
-
-Este proyecto está bajo la **Licencia MIT**. Consulta el archivo [LICENSE.md](LICENSE.md) para más detalles.
+### 3. Despliegue con Genezio (`genezio.yaml`)
+El despliegue está automatizado usando Genezio.
+El archivo `genezio.yaml` define la configuración para que el código frontend se compile automáticamente (`npm run build`) y se publique la carpeta `build` en la región `us-east-1`.
 
 ---
 
-## Contribuciones
+## 🤝 Contribuciones
 
-¡Agradecemos las contribuciones! Si encuentras algún problema o tienes sugerencias para mejorar, por favor abre un issue o envía un pull request.
+Este proyecto forma parte de las iniciativas colaborativas de la **Universidad de las Fuerzas Armadas (ESPE)**. 
+Agradecemos a todos los miembros del equipo de desarrollo, así como al equipo de Creative Tim por la plantilla **Paper Kit React** que sirvió como base para este desarrollo.
 
----
-
-## Agradecimientos
-
-Este proyecto fue desarrollado utilizando **Paper Kit React**, un kit de UI creado por el equipo de **[Creative Tim](https://www.creative-tim.com/)**. Agradecemos a Creative Tim por proporcionar una herramienta tan poderosa y bien diseñada para la comunidad de desarrolladores.
-
-Además, este proyecto es parte de las iniciativas de la **Universidad de las Fuerzas Armadas (ESPE)**, y agradecemos a todos los miembros del equipo por su apoyo y colaboración en la realización de este trabajo.
-
----
-
-## Enlaces Útiles
-
-- [Demo](https://demos.creative-tim.com/paper-kit-react/#/index)
-- [Descargar](https://www.creative-tim.com/product/paper-kit-react)
-- [Soporte](https://www.creative-tim.com/contact-us)
-- [Issues](https://github.com/creativetimofficial/paper-kit-react/issues)
+Si deseas contribuir:
+1. Crea un fork del proyecto.
+2. Crea una rama para tu feature (`git checkout -b feature/NuevaCaracteristica`).
+3. Haz commit a tus cambios (`git commit -m 'Añade NuevaCaracteristica'`).
+4. Haz push a la rama (`git push origin feature/NuevaCaracteristica`).
+5. Abre un Pull Request.
 
 ---
+*Desarrollado con ❤️ para Escuela Alinambi.*
